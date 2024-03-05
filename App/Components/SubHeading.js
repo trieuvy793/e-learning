@@ -7,7 +7,7 @@ export default function SubHeading({text,color=Colors.BLACK}) {
     <View>
       <Text style={{
         fontSize:24, fontWeight:"bold",
-        color:color
+        color:color, marginBottom:5
       }}>{text}</Text>
     </View>
   )

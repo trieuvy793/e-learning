@@ -1,8 +1,8 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { getCourseList } from '../../Services'
 import SubHeading from '../SubHeading';
-import { FlatList, GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
+// import { FlatList, GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../../Utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import CourseItem from './CourseItem';
@@ -24,24 +24,21 @@ export default function CourseList({ level }) {
   }
 
   return (
-    <View>
-      <SubHeading text={level + ' Courses'} color={level == "Basic" && Colors.WHITE} />
+    <View style={{marginBottom:30}}>
+      <SubHeading text={level + ' Courses'}/>
 
-      <GestureHandlerRootView>
-        <FlatList
-          data={courseList}
-          key={courseList.id}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={()=>navigation.navigate('course-detail')}>
-              <CourseItem item={item}/>
-            </TouchableOpacity>
-            
-          )}
-        />
-
-      </GestureHandlerRootView>
+      <FlatList
+        data={courseList}
+        key={courseList.id}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        scrollEnabled={true}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('course-detail')}>
+            <CourseItem item={item} />
+          </TouchableOpacity>
+        )}
+      />
     </View>
 
   )

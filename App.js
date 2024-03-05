@@ -4,21 +4,25 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import LoginScreen from './App/Screen/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './App/Navigations/TabNavigation';
+// import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 
 export default function App() {
   return (
     <ClerkProvider publishableKey={"pk_test_dG9waWNhbC1jYXRmaXNoLTM1LmNsZXJrLmFjY291bnRzLmRldiQ"}>
-    <View style={styles.container}>
-      
-      <SignedIn>
+
+
+      <View style={styles.container}>
+
+        <SignedIn>
           <NavigationContainer>
-            <TabNavigation/>
+            <TabNavigation />
           </NavigationContainer>
         </SignedIn>
         <SignedOut>
-        <LoginScreen/>
+          <LoginScreen />
         </SignedOut>
-    </View>
+      </View>
+
     </ClerkProvider>
   );
 }

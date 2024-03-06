@@ -8,6 +8,7 @@ import ProfileScreen from '../Screen/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import HomeScreenNavigation from './HomeScreenNavigation';
+import ChatbotScreen from '../Screen/ChatbotScreen';
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -40,6 +41,13 @@ export default function TabNavigation() {
       options={{
         tabBarIcon:({color, size})=> (
           <MaterialIcons name="supervised-user-circle" size={size} color={color} />
+        )
+      }}
+      />
+      <Tab.Screen name='chatbot' component={ChatbotScreen}
+      options={{
+        tabBarIcon:({color, size})=> (
+          <MaterialIcons name="chat" size={size} color={color} />
         )
       }}
       />

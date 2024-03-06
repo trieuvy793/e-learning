@@ -16,11 +16,11 @@ export default function CourseItem({item}) {
         <Text style={{ fontSize: 17, fontWeight: 'bold' }}>{item.name}</Text>
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 5 }}>
-            <Ionicons name="book-outline" size={24} color="black" />
+            <Ionicons name="book-outline" size={18} color="black" />
             <Text>{item?.chapters?.length} Chapters</Text>
           </View>
           <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 5 }}>
-            <Ionicons name="time-outline" size={24} color="black" />
+            <Ionicons name="time-outline" size={18} color="black" />
             <Text>{item?.time}</Text>
           </View>
         </View>

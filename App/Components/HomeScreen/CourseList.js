@@ -4,7 +4,6 @@ import { getCourseList } from '../../Services'
 import SubHeading from '../SubHeading';
 // import { FlatList, GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../../Utils/Colors';
-import { Ionicons } from '@expo/vector-icons';
 import CourseItem from './CourseItem';
 import { useNavigation } from '@react-navigation/native';
 
@@ -34,7 +33,7 @@ export default function CourseList({ level }) {
         showsHorizontalScrollIndicator={false}
         scrollEnabled={true}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('course-detail')}>
+          <TouchableOpacity onPress={() => navigation.navigate('course-detail', {course:item})}>
             <CourseItem item={item} />
           </TouchableOpacity>
         )}

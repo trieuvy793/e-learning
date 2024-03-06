@@ -13,10 +13,23 @@ export const getCourseList = async(level)=> {
       tags
       time
       author
+      description {
+        markdown
+      }
       banner {
         url
       }
       chapters {
+        content {
+          heading
+          description {
+            markdown
+          }
+          output {
+            markdown
+          }
+        }
+        title
         id
       }
     }

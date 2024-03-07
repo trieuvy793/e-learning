@@ -3,7 +3,7 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../Utils/Colors';
 
-export default function ChapterSection({chapterList}) {
+export default function ChapterSection({chapterList,userEnrolledCourse}) {
   return chapterList&&(
     <View style={{padding:10,backgroundColor:Colors.WHITE,marginTop:20,borderRadius:15}}>
       <Text style={{fontWeight:'bold',fontSize:22}}>Chapters</Text>
@@ -13,7 +13,8 @@ export default function ChapterSection({chapterList}) {
           <Text style={{fontSize:27,fontWeight:'bold'}}>{index+1}</Text>
           <Text style={{fontSize:21}}>{item.title}</Text>
         </View>
-        <Ionicons name="lock-closed" size={25} color="black"/>
+        {userEnrolledCourse.length==0?<Ionicons name="lock-closed" size={25} color="black"/>
+        :<Ionicons name="play" size={25} color="black"/>}
         </View>
       ))}
     </View>

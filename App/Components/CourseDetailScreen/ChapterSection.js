@@ -8,7 +8,7 @@ export default function ChapterSection({chapterList}) {
     <View style={{padding:10,backgroundColor:Colors.WHITE,marginTop:20,borderRadius:15}}>
       <Text style={{fontWeight:'bold',fontSize:22}}>Chapters</Text>
       {chapterList.map((item,index)=>(
-        <View style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:15,borderWidth:1,borderRadius:10,marginTop:10}}>
+        <View key={index} style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:15,borderWidth:1,borderRadius:10,marginTop:10}}>
         <View style={{display:'flex',flexDirection:'row',alignItems:'center',gap:10}}>
           <Text style={{fontSize:27,fontWeight:'bold'}}>{index+1}</Text>
           <Text style={{fontSize:21}}>{item.title}</Text>

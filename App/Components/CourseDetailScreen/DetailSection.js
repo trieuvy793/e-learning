@@ -2,8 +2,9 @@ import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity } from 'rea
 import React from 'react'
 import Colors from '../../Utils/Colors'
 import OptionItem from './OptionItem'
+import { enrollCourse } from '../../Services'
 
-export default function DetailSection({ course }) {
+export default function DetailSection({course, enrollCourse}) {
   return (
     <View style={{ padding: 10, borderRadius: 15, backgroundColor: Colors.WHITE }}>
       <Image source={{ uri: course?.banner?.url }}
@@ -29,7 +30,9 @@ export default function DetailSection({ course }) {
         </View>
 
         <View style={{display:'flex',flexDirection:'row',gap:24,justifyContent:'space-evenly'}}>
-          <TouchableOpacity style={{padding:12,backgroundColor:Colors.PRIMARY,borderRadius:15}}>
+          <TouchableOpacity 
+          onPress={()=>enrollCourse()}
+          style={{padding:12,backgroundColor:Colors.PRIMARY,borderRadius:15}}>
             <Text style={{color:Colors.WHITE,textAlign:'center',fontSize:17}}>Enroll For Free</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{padding:12,backgroundColor:Colors.LIGHT_PRIMARY,borderRadius:15}}>

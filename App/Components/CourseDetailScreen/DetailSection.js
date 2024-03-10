@@ -2,7 +2,6 @@ import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity } from 'rea
 import React from 'react'
 import Colors from '../../Utils/Colors'
 import OptionItem from './OptionItem'
-import { enrollCourse } from '../../Services'
 
 export default function DetailSection({course, enrollCourse,userEnrolledCourse}) {
   return (

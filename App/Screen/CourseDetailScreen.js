@@ -24,34 +24,12 @@ export default function CourseDetailScreen() {
     }
   },[params.course,user])
 
-  const toastConfig={
-    success: () => (
-      <BaseToast
-        style={{ borderWidth:1, borderColor:'#63d0a7', backgroundColor:'#f2faf7', topOffset: 100 }}
-        contentContainerStyle={{ padding: 20 }}
-        text1='Sucess'
-        text2='Course Enrolled Successfully!'
-        text1Style={{
-          fontSize: 15,
-          fontWeight: 'bold'
-        }}
-        text2Style={{
-          fontSize: 14,
-          fontWeight: 'normal'
-        }}
-      />
-    ),
-  }
-
   const UserEnrolledCourse=()=>{
     enrollCourse(params.course.id,user.primaryEmailAddress.emailAddress).then(resp=>{
       //console.log(resp);
       if (resp)
       {
         // ToastAndroid.show('Course Enrolled Successfully!', ToastAndroid.LONG);
-        Toast.show({
-          type: 'success'
-        })
         GetUserEnrolledCourse();
       }
     })
@@ -77,7 +55,6 @@ export default function CourseDetailScreen() {
       enrollCourse={()=>UserEnrolledCourse()}/>
       <ChapterSection chapterList={params.course.chapters}
       userEnrolledCourse={userEnrolledCourse}/>
-      <Toast config={toastConfig} />
     </ScrollView>
     
   )

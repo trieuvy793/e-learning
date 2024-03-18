@@ -2,8 +2,9 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Colors from '../../Utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
+import CourseProgressBar from './CourseProgressBar';
 
-export default function CourseItem({item}) {
+export default function CourseItem({item,completedChapter}) {
   return (
     <View style={{
       padding: 10,
@@ -29,6 +30,12 @@ export default function CourseItem({item}) {
           fontWeight: '500'
         }}>{item.price == 0 ? 'Free' : item.price}</Text>
       </View>
+      {completedChapter!=undefined
+      ?<CourseProgressBar
+        totalChapter={item?.chapters?.length}
+        completedChapter={completedChapter}
+      />
+      :null}
     </View>
   )
 }

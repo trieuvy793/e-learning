@@ -176,3 +176,46 @@ export const GetAllUsers=async()=>{
   const result = await request(MASTER_URL, query);
   return result;
 }
+
+export const GetAllProgressCourse=async(userEmail)=>{
+  const query = gql`
+  query GetAllUserEnrolledProgressCourse {
+    userEnrolledCourses(where: {userEmail: "trieuvygialai@gmail.com"}) {
+      completedChapter {
+        chapterId
+      }
+      course {
+        banner {
+          url
+        }
+        chapters {
+          id
+          title
+          content {
+            heading
+            description {
+              markdown
+              html
+            }
+            output {
+              markdown
+              html
+            }
+          }
+        }
+        description {
+          markdown
+        }
+        id
+        level
+        name
+        price
+        time
+      }
+    }
+  }   
+  `
+
+  const result = await request(MASTER_URL, query);
+  return result;
+}

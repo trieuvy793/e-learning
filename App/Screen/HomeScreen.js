@@ -7,6 +7,7 @@ import { useAuth, useUser } from '@clerk/clerk-expo'
 import { createNewUser, getUserDetail } from '../Services/index.js'
 import { UserPointsContext } from '../Context/UserPointsContext.js'
 import { GetPoint } from '../Services/getPoint.js'
+import CourseProgress from '../Components/HomeScreen/CourseProgress.js'
 
 export default function HomeScreen() {
 
@@ -37,6 +38,7 @@ export default function HomeScreen() {
         <ScrollView style={{marginBottom:380}} showsVerticalScrollIndicator={false}>
           <View style={{ padding: 20 }}>
             <View>
+              <CourseProgress/>
               <CourseList level={'Basic'} />
             </View>
             <View>

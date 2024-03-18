@@ -160,3 +160,19 @@ export const getUserDetail=async(email)=>{
   const result = await request(MASTER_URL, query);
   return result;
 }
+
+export const GetAllUsers=async()=>{
+  const query = gql`
+  query GetAllUsers {
+    userDetails(orderBy: point_DESC) {
+      id
+      profileImage
+      userName
+      point
+    }
+  }
+  `
+
+  const result = await request(MASTER_URL, query);
+  return result;
+}

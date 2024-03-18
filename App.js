@@ -6,25 +6,27 @@ import LoginScreen from './App/Screen/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './App/Navigations/TabNavigation';
 import { CompleteChapterContext } from './App/Context/CompleteChapterContext';
+import { UserPointsContext } from './App/Context/UserPointsContext';
 
 export default function App() {
-  const[isChapterComplete,setIsChapterComplete]=useState(false);
+  const [userPoints, setUserPoints] = useState();
+  const [isChapterComplete, setIsChapterComplete] = useState(false);
   return (
     <ClerkProvider publishableKey={"pk_test_dG9waWNhbC1jYXRmaXNoLTM1LmNsZXJrLmFjY291bnRzLmRldiQ"}>
-
-      <CompleteChapterContext.Provider value={{isChapterComplete,setIsChapterComplete}}>
-        <View style={styles.container}>
-          <SignedIn>
-            <NavigationContainer>
-              <TabNavigation />
-            </NavigationContainer>
-          </SignedIn>
-          <SignedOut>
-            <LoginScreen />
-          </SignedOut>
-        </View>
-      </CompleteChapterContext.Provider>
-
+      <UserPointsContext.Provider value={{ userPoints, setUserPoints }}>
+        <CompleteChapterContext.Provider value={{ isChapterComplete, setIsChapterComplete }}>
+          <View style={styles.container}>
+            <SignedIn>
+              <NavigationContainer>
+                <TabNavigation />
+              </NavigationContainer>
+            </SignedIn>
+            <SignedOut>
+              <LoginScreen />
+            </SignedOut>
+          </View>
+        </CompleteChapterContext.Provider>
+      </UserPointsContext.Provider>
 
     </ClerkProvider>
   );

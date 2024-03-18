@@ -1,14 +1,37 @@
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Header from '../Components/HomeScreen/Header.js'
 import Colors from '../Utils/Colors.js'
 import CourseList from '../Components/HomeScreen/CourseList.js'
+import { useAuth, useUser } from '@clerk/clerk-expo'
+import { createNewUser, getUserDetail } from '../Services/index.js'
+import { UserPointsContext } from '../Context/UserPointsContext.js'
+import { GetPoint } from '../Services/getPoint.js'
 
 export default function HomeScreen() {
+
+  const { isLoaded,signOut } = useAuth();
+  const {user} = useUser();
+  const {userPoints,setUserPoints}=useContext(UserPointsContext);
+
+  useEffect(()=>{
+    user&&createUser();
+  }, [user])
+
+  const createUser=()=>{
+    if(user) 
+    {
+      createNewUser(user.fullName,user.primaryEmailAddress.emailAddress,user.imageUrl).then(resp=>{
+        if(resp)
+          GetPoint();
+      })
+    }
+  }
+
   return (
     <View>
       <View style={{ backgroundColor: Colors.PRIMARY, height: 200, padding: 20 }}>
-        <Header />
+        <Header/>
       </View>
       <SafeAreaView>
         <ScrollView style={{marginBottom:380}} showsVerticalScrollIndicator={false}>

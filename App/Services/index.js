@@ -82,7 +82,7 @@ export const getUserEnrolledCourse=async(courseId,userEmail)=>{
   return result;
 }
 
-export const markChapterCompleted=async(chapterId,recordId)=>{
+export const markChapterCompleted=async(chapterId,recordId,userEmail,points)=>{
   const mutationQuery=gql
   `
   mutation markChapterCompleted {
@@ -99,9 +99,64 @@ export const markChapterCompleted=async(chapterId,recordId)=>{
         }
       }
     }
+
+    updateUserDetail(where: {email: "`+userEmail+`"}, data: {point: `+points+`}) {
+      point
+    }
+    publishUserDetail(where: {email: "`+userEmail+`"}) {
+      id
+    }
   }  
   `
 
   const result = await request(MASTER_URL, mutationQuery);
+  return result;
+}
+
+export const isCompletedChapter=async(chapterId,recordId)=>{
+  const mutationQuery=gql
+  `query isCompletedChapter {
+    userEnrolledCourse(where: {id: "`+recordId+`"}) {
+      completedChapter(first: 1, where: {chapterId: "`+chapterId+`"}) {
+        id
+      }
+    }
+  }  
+  `
+
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
+}
+
+export const createNewUser=async(userName,email,profileImageURL)=>{
+  const mutationQuery=gql`
+  mutation CreateNewUser {
+    upsertUserDetail(
+      upsert: {create: 
+        {email: "`+email+`", point: 0, profileImage: "`+profileImageURL+`", userName: "`+userName+`"}, 
+        update: {email: "`+email+`", profileImage: "`+profileImageURL+`", userName: "`+userName+`"}}
+      where: {email: "`+email+`"}
+    ) {
+      id
+    }
+    publishUserDetail(where: {email: "`+email+`"}) {
+      id
+    }
+  }  
+  `
+
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
+}
+
+export const getUserDetail=async(email)=>{
+  const query=gql`
+  query getUserDetails {
+    userDetail(where: {email: "`+email+`"}) {
+      point
+    }
+  }  
+  `
+  const result = await request(MASTER_URL, query);
   return result;
 }

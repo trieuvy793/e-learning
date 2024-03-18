@@ -26,10 +26,11 @@ export default function ChapterSection({chapterList,userEnrolledCourse}) {
   }
 
   const checkIsChapterCompleted=(chapterId)=>{
+    console.log(userEnrolledCourse)
     if(userEnrolledCourse[0]?.completedChapter?.length<=0){
       return false;
     }
-    const resp=userEnrolledCourse[0]?.completedChapter?.find(item=>item.chapterId==chapterId);
+    const resp=userEnrolledCourse[0]?.completedChapter.find(item=>item.chapterId==chapterId);
     return resp;
   }
   return chapterList&&(

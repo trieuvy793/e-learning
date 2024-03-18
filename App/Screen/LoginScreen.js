@@ -17,7 +17,7 @@ export default function LoginScreen() {
     try {
       const { createdSessionId, signIn, signUp, setActive } =
         await startOAuthFlow();
- 
+  
       if (createdSessionId) {
         setActive({ session: createdSessionId });
       } else {

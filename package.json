@@ -12,24 +12,28 @@
     "@clerk/clerk-expo": "^0.20.8",
     "@react-navigation/bottom-tabs": "^6.5.16",
     "@react-navigation/native": "^6.1.14",
+    "@react-navigation/native-stack": "^6.9.26",
     "@react-navigation/stack": "^6.3.25",
     "expo": "~50.0.13",
+    "expo-font": "~11.10.3",
     "expo-status-bar": "~1.11.1",
     "expo-web-browser": "~12.8.2",
     "graphql": "^15.8.0",
     "graphql-request": "^6.1.0",
+    "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-native": "^0.73.5",
     "react-native-gesture-handler": "~2.14.0",
     "react-native-render-html": "^6.3.4",
-    "react-native-safe-area-context": "4.8.2",
+    "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-toast-message": "^2.2.0",
     "typescript": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react": "^18.2.61"
+    "@types/react": "^18.2.61",
+    "tailwindcss": "^3.3.2"
   },
   "private": true
 }

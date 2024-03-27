@@ -1,6 +1,6 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
-import Colors from '../../Utils/Colors';
+import Colors from '../../../assets/colors/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import CourseProgressBar from './CourseProgressBar';
 

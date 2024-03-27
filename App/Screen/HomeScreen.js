@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
 import React, { useContext, useEffect } from 'react'
 import Header from '../Components/HomeScreen/Header.js'
-import Colors from '../Utils/Colors.js'
+import Colors from '../../assets/colors/Colors.js'
 import CourseList from '../Components/HomeScreen/CourseList.js'
 import { useAuth, useUser } from '@clerk/clerk-expo'
 import { createNewUser, getUserDetail } from '../Services/index.js'

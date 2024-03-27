@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Colors from '../../Utils/Colors'
+import Colors from '../../../assets/colors/Colors'
 
 export default function CourseProgressBar({totalChapter,completedChapter}) {
 

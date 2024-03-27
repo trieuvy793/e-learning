@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Colors from '../../Utils/Colors';
+import Colors from '../../../assets/colors/Colors';
 
 export default function ProgressBar({contentLength, contentIndex}) {
   const arraySize = Array.from({length:contentLength},(_,index)=>index+1);

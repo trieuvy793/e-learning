@@ -1,7 +1,7 @@
 import { View, Text, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react'
 import RenderHTML from 'react-native-render-html';
-import Colors from '../../Utils/Colors';
+import Colors from '../../../assets/colors/Colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function ContentItem({description, output}) {

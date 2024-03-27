@@ -8,7 +8,7 @@ import ChapterSection from '../Components/CourseDetailScreen/ChapterSection';
 import { enrollCourse, getUserEnrolledCourse } from '../Services';
 import { useUser } from '@clerk/clerk-expo';
 import Toast , {BaseToast} from 'react-native-toast-message';
-import Colors from '../Utils/Colors';
+import Colors from '../../assets/colors/Colors';
 import { CompleteChapterContext } from '../Context/CompleteChapterContext';
 
 export default function CourseDetailScreen() {

@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, ToastAndroid, StyleSheet } from 'react-native'
 import React, { useContext } from 'react'
 import { Ionicons } from '@expo/vector-icons';
-import Colors from '../../Utils/Colors';
+import Colors from '../../../assets/colors/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { CompleteChapterContext } from '../../Context/CompleteChapterContext';
 

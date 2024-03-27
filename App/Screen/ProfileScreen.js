@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useClerk } from "@clerk/clerk-expo";
-import Colors from '../Utils/Colors';
+import Colors from '../../assets/colors/Colors';
 
 export default function ProfileScreen() {
   const navigate = useNavigation();

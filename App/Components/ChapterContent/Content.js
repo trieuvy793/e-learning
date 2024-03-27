@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ProgressBar from './ProgressBar'
 import { FlatList } from 'react-native-gesture-handler'
 import ContentItem from './ContentItem'
-import Colors from '../../Utils/Colors'
+import Colors from '../../../assets/colors/Colors'
 import { useNavigation } from '@react-navigation/native'
 
 export default function Content({ content, onChapterFinish }) {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getCourseList } from '../../Services'
 import SubHeading from '../SubHeading';
 // import { FlatList, GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
-import Colors from '../../Utils/Colors';
+import Colors from '../../../assets/colors/Colors';
 import CourseItem from './CourseItem';
 import { useNavigation } from '@react-navigation/native';
 

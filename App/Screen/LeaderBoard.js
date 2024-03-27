@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { GetAllUsers } from '../Services'
-import Colors from '../Utils/Colors';
+import Colors from '../../assets/colors/Colors';
 import Gold from './../../assets/images/golden.png'
 import Silver from './../../assets/images/silver.png'
 import Bronze from './../../assets/images/bronze.png'

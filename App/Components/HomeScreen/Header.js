@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
 import React, { useContext } from 'react'
 import { useUser } from '@clerk/clerk-expo'
-import Colors from '../../Utils/Colors';
+import Colors from '../../../assets/colors/Colors';
 import Coin from './../../../assets/images/coin.jpg';
 import { Ionicons } from '@expo/vector-icons';
 import { UserPointsContext } from '../../Context/UserPointsContext'

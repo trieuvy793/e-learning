@@ -1,6 +1,6 @@
 import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
-import Colors from '../../Utils/Colors'
+import Colors from '../../../assets/colors/Colors'
 import OptionItem from './OptionItem'
 
 export default function DetailSection({course, enrollCourse,userEnrolledCourse}) {

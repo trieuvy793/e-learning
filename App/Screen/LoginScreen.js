@@ -46,7 +46,6 @@ export default function LoginScreen() {
         </View>
       </View>
 
-
       <View className="bg-PRIMARY w-full h-full absolute top-1/4 rounded-full">
         <View className="flex items-center bottom-2">
           <Image source={snowMan} className="w-44 h-44 top-7" />

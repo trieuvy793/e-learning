@@ -30,8 +30,8 @@ export default function HomeScreen() {
   }
 
   return (
-    <View>
-      <View style={{ backgroundColor: Colors.PRIMARY, height: 200, padding: 20 }}>
+    <View className="bg-BACKGROUND">
+      <View className="p-5 h-52">
         <Header/>
       </View>
       <SafeAreaView>

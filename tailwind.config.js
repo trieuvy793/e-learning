@@ -2,7 +2,7 @@
 const {fontFamily} = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  content: ["./App.{js,jsx,ts,tsx}", "./App/Screen/**/*.{js,jsx,ts,tsx}"],
+  content: ["./App.{js,jsx,ts,tsx}", "./App/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -13,7 +13,9 @@ module.exports = {
         'GREEN': '#32C48D',
         'RED': '#FF5F54',
         'BROWN': '#580600',
-        'BEIGE': '#F4E9D9'
+        'BEIGE': '#F4E9D9',
+        'BACKGROUND': '#F2FAFF',
+        'SECONDARY_BG': '#C6D6FF'
       },
       fontFamily: {
         custom: ['lato', ...fontFamily.sans]

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 });
 
 const START_Y_POSITION = -50;
-const SNOWFLAKE_TYPES = ['❄', '❅', '❆', 'C++', 'Py', 'Go', 'Java', 'JS', 'BUGS'];
+const SNOWFLAKE_TYPES = ['❄', '❅', '❆'];
 
 export default function Snowflake({ scene }) {
   const [config, setConfig] = useState(() => getConfig());
@@ -98,7 +98,7 @@ export default function Snowflake({ scene }) {
 function getConfig(scene) {
   const size = randomInt(10, 18);
   const opacity = randomInt(4, 10) / 10;
-  const type = SNOWFLAKE_TYPES[randomInt(0, 8)];
+  const type = SNOWFLAKE_TYPES[randomInt(0, 2)];
   const xPosition = `${randomInt(0, 100)}%`;
 
   const fallDuration = randomInt(10000, 60000);

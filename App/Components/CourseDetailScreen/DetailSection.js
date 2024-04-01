@@ -1,54 +1,56 @@
-import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
-import Colors from '../../../assets/colors/Colors'
-import OptionItem from './OptionItem'
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import OptionItem from './OptionItem';
+import Colors from '../../../assets/colors/Colors';
 
-export default function DetailSection({course, enrollCourse,userEnrolledCourse}) {
+export default function DetailSection({ course, description, enrollCourse, userEnrolledCourse }) {
+  const [loading, setLoading] = useState(false);
+
+  const handleEnrollCourse = () => {
+    setLoading(true); 
+    setTimeout(() => {
+      setLoading(false);
+      enrollCourse();
+      description.setShowDescription(false);
+    }, 2000); 
+  };
+
   return (
-    <View style={{ padding: 10, borderRadius: 15, backgroundColor: Colors.WHITE }}>
-      <Image source={{ uri: course?.banner?.url }}
-        style={{ width: Dimensions.get('screen').width * 0.85, height: 190, borderRadius: 15 }} />
-
-      <View style={{padding:10}}>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 10 }}>{course.name}</Text>
-
-        <View>
-          <View style={styles.rowStyle}>
-            <OptionItem icon={'book-outline'} value={course.chapters?.length + "Chapters"} />
-            <OptionItem icon={'time-outline'} value={course.time} />
-          </View>
-          <View style={styles.rowStyle}>
-            <OptionItem icon={'person-circle-outline'} value={course.author} />
-            <OptionItem icon={'cellular-outline'} value={course.level} />
-          </View>
-        </View>
-
-        <View>
-          <Text style={{fontSize:20,fontWeight:'bold'}}>Description</Text>
-          <Text style={{lineHeight:22}}>{course?.description?.markdown}</Text>
-        </View>
-
-        <View style={{display:'flex',flexDirection:'row',gap:24,justifyContent:'space-evenly'}}>
-          {userEnrolledCourse?.length==0?<TouchableOpacity 
-          onPress={()=>enrollCourse()}
-          style={{padding:12,backgroundColor:Colors.PRIMARY,borderRadius:15}}>
-            <Text style={{color:Colors.WHITE,textAlign:'center',fontSize:17}}>Enroll For Free</Text>
-          </TouchableOpacity>:null}
-          <TouchableOpacity style={{padding:12,backgroundColor:Colors.LIGHT_PRIMARY,borderRadius:15}}>
-            <Text style={{color:Colors.WHITE,textAlign:'center',fontSize:17}}>Membership $2.99/Month</Text>
-          </TouchableOpacity>
+    <View className="p-3">
+      <Image source={{ uri: course?.banner?.url }} className="w-full h-56 rounded-2xl"/>
+      <View className="mt-1">
+        <Text className="text-xl">{course.name}</Text>
+        <OptionItem icon={'person-circle-outline'} value={"Created by " + course.author} />
+        <View className="flex flex-row justify-between">
+          <OptionItem icon={'time-outline'} value={course.time} />
+          <Text style={{ color: course.level == 'Basic' ? '#32C48D' : '#FF5F54', fontSize:24 }}>{course.level == 'Basic' ? 'Free' : '$'+course.price}</Text>
         </View>
       </View>
-
+      {description.showDescription&&<View className="mt-4">
+        <Text className="text-sm text-justify">{course?.description?.markdown}</Text>
+      </View>}
+      <View className="flex flex-row justify-between">
+        <TouchableOpacity className="flex flex-row mt-4 bg-LIGHT_PINK py-4 px-9 rounded-2xl" onPress={()=>description.showDescription?description.setShowDescription(false):description.setShowDescription(true)}>
+          <Text className="text-base">Description</Text>
+        </TouchableOpacity>
+        {userEnrolledCourse?.length==0 ? (
+          <TouchableOpacity
+            onPress={handleEnrollCourse}
+            className={`flex flex-row mt-4 bg-SECONDARY_BG py-4 px-9 rounded-2xl ${loading ? 'opacity-50' : ''}`}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color={Colors.WHITE} />
+            ) : (
+              <Text className="text-base">Enroll Now</Text>
+            )}
+          </TouchableOpacity>
+        ) : (
+          <View className="flex flex-row mt-4 bg-LIGHT_PRIMARY py-4 px-9 rounded-2xl">
+            <Text className="text-base">Course Enrolled</Text>
+          </View>
+        )}
+      </View>
     </View>
-  )
+  );
 }
-
-const styles = StyleSheet.create({
-  rowStyle: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10
-  }
-})

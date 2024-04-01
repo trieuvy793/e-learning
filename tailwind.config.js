@@ -15,7 +15,8 @@ module.exports = {
         'BROWN': '#580600',
         'BEIGE': '#F4E9D9',
         'BACKGROUND': '#F2FAFF',
-        'SECONDARY_BG': '#C6D6FF'
+        'SECONDARY_BG': '#C6D6FF',
+        'LIGHT_PINK': '#F6E8E8'
       },
       fontFamily: {
         custom: ['lato', ...fontFamily.sans]

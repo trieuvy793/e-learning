@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default function OptionItem({icon,value}) {
   return (
     <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 5 }}>
-      <Ionicons name={icon} size={24} color="black" />
+      <Ionicons name={icon} size={20} color="black" />
       <Text>{value}</Text>
     </View>
   )

@@ -23,7 +23,7 @@ export default function CourseProgress() {
   }
 
   return (
-    <View>
+    <View style={{marginBottom: 30}}>
       <SubHeading text={'In Progress'}/>
 
       <FlatList

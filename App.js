@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { LogBox, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react'
 import { useFonts } from 'expo-font';
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
@@ -8,7 +8,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './App/Navigations/TabNavigation';
 import { CompleteChapterContext } from './App/Context/CompleteChapterContext';
 import { UserPointsContext } from './App/Context/UserPointsContext';
+import { createStackNavigator } from '@react-navigation/stack';
+import CourseDetailScreen from './App/Screen/CourseDetailScreen';
+import ChapterContentScreen from './App/Screen/ChapterContentScreen';
 
+const Stack=createStackNavigator();
+LogBox.ignoreAllLogs();
 export default function App() {
 
   const [fontsLoaded, fontError] = useFonts({
@@ -31,7 +36,11 @@ export default function App() {
           <View style={styles.container}>
             <SignedIn>
               <NavigationContainer>
-                <TabNavigation />
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                  <Stack.Screen name='Home' component={TabNavigation}/>
+                  <Stack.Screen name='course-detail' component={CourseDetailScreen} />
+                  <Stack.Screen name='chapter-content' component={ChapterContentScreen} />
+                </Stack.Navigator>
               </NavigationContainer>
             </SignedIn>
             <SignedOut>
@@ -48,7 +57,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F2FAFF',
     marginTop: 20
   },
 });

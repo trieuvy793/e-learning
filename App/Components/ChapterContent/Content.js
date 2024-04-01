@@ -11,6 +11,7 @@ export default function Content({ content, onChapterFinish }) {
   let contentRef;
   const navigation = useNavigation();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isFinish, setIsFinish] = useState(false);
   const onNextBtnPress = (index) => {
     if (content?.length <= index + 1) {
       //navigation.goBack();
@@ -20,6 +21,7 @@ export default function Content({ content, onChapterFinish }) {
     setActiveIndex(index + 1);
     contentRef.scrollToIndex({ animated: true, index: index + 1 })
   }
+
   return (
     <View>
       <ProgressBar contentLength={content?.length}
@@ -44,7 +46,8 @@ export default function Content({ content, onChapterFinish }) {
 
             <TouchableOpacity
               style={{ marginTop: 10 }}
-              onPress={() => onNextBtnPress(index)}
+              onPress={() => {onNextBtnPress(index); content?.length > index + 1 ? '' : setIsFinish(true)}}
+              disabled={isFinish}
             >
               <Text style={{ padding: 15, backgroundColor: Colors.PRIMARY, color: Colors.WHITE, borderRadius: 10, textAlign: 'center', fontSize: 17 }}>
                 {

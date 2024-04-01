@@ -36,6 +36,7 @@ export default function LoginScreen() {
   return (
     <View className="bg-LIGHT_PRIMARY w-full h-full relative">
       <View>
+        <Snow></Snow>
         <View className="flex flex-row top-10 justify-center">
           <Text className="text-RED text-5xl">Snow</Text>
           <Text className="text-5xl">Code</Text>

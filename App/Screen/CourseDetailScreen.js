@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, ToastAndroid } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DetailSection from '../Components/CourseDetailScreen/DetailSection';
@@ -16,10 +16,11 @@ export default function CourseDetailScreen() {
   const params = useRoute().params;
   const{isChapterComplete,setIsChapterComplete}=useContext(CompleteChapterContext);
   const [userEnrolledCourse,setUserEnrolledCourse]=useState([]);
+  const[showDescription, setShowDescription] = useState(true);
   const {user} = useUser();
 
   useEffect(()=>{
-    console.log(params.course)
+    //console.log(params.course)
     if(user&&params.course)
     {
       GetUserEnrolledCourse();
@@ -32,7 +33,7 @@ export default function CourseDetailScreen() {
 
   const UserEnrolledCourse=()=>{
     enrollCourse(params.course.id,user.primaryEmailAddress.emailAddress).then(resp=>{
-      //console.log(resp);
+      console.log("hi"+resp?.course);
       if (resp)
       {
         // ToastAndroid.show('Course Enrolled Successfully!', ToastAndroid.LONG);
@@ -50,15 +51,18 @@ export default function CourseDetailScreen() {
       setUserEnrolledCourse(resp.userEnrolledCourses)
     })
   }
+
   return params.course&&(
-    <ScrollView style={{padding:20,paddingTop:0}}>
-      <TouchableOpacity onPress={()=>navigate.goBack()}>
-        <Ionicons name="arrow-back-circle-outline" size={40} color="black"/>
+    <ScrollView className="p-5 pt-0 bg-BACKGROUND">
+      <TouchableOpacity className="flex flex-row items-center mt-3 justify-between" onPress={()=>navigate.goBack()}>
+        <AntDesign name="left" size={24} color="black"/>
+        <Text className="text-xl">{params.course.level} Course</Text>
+        <Text></Text>
       </TouchableOpacity>
       
-      <DetailSection course={params.course} 
-      userEnrolledCourse={userEnrolledCourse}
+      <DetailSection course={params.course} description={{showDescription, setShowDescription}} userEnrolledCourse={userEnrolledCourse}
       enrollCourse={()=>UserEnrolledCourse()}/>
+
       <ChapterSection chapterList={params.course.chapters}
       userEnrolledCourse={userEnrolledCourse}/>
     </ScrollView>

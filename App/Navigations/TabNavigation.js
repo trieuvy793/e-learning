@@ -6,8 +6,9 @@ import MyCourse from '../Screen/MyCourse';
 import LeaderBoard from '../Screen/LeaderBoard';
 import ProfileScreen from '../Screen/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import HomeScreenNavigation from './HomeScreenNavigation';
+import { SimpleLineIcons } from '@expo/vector-icons';
 import ChatbotScreen from '../Screen/ChatbotScreen';
 
 const Tab = createBottomTabNavigator();
@@ -17,38 +18,38 @@ export default function TabNavigation() {
       headerShown:false,
       tabBarStyle: {backgroundColor: "#E9EFFF"}
     }}>
-      <Tab.Screen name='home' component={HomeScreenNavigation}
+      <Tab.Screen name='home' component={HomeScreen}
       options={{
         tabBarIcon:({color, size})=> (
-          <Ionicons name="home" size={size} color={color} />
+          <AntDesign name="home" size={22} color={color} />
         )
       }}
       />
       <Tab.Screen name='my-course' component={MyCourse}
       options={{
         tabBarIcon:({color, size})=> (
-          <Ionicons name="book" size={size} color={color} />
+          <AntDesign name="book" size={22} color={color} />
         )
       }}
       />
       <Tab.Screen name='leader-board' component={LeaderBoard}
       options={{
         tabBarIcon:({color, size})=> (
-          <MaterialIcons name="leaderboard" size={size} color={color} />
+          <SimpleLineIcons name="chart" size={22} color={color} />
         )
       }}
       />
       <Tab.Screen name='profile' component={ProfileScreen}
       options={{
         tabBarIcon:({color, size})=> (
-          <MaterialIcons name="supervised-user-circle" size={size} color={color} />
+          <AntDesign name="user" size={22} color={color} />
         )
       }}
       />
       <Tab.Screen name='chatbot' component={ChatbotScreen}
       options={{
         tabBarIcon:({color, size})=> (
-          <MaterialIcons name="chat" size={size} color={color} />
+          <Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />
         )
       }}
       />

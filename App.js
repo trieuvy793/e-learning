@@ -11,6 +11,7 @@ import { UserPointsContext } from './App/Context/UserPointsContext';
 import { createStackNavigator } from '@react-navigation/stack';
 import CourseDetailScreen from './App/Screen/CourseDetailScreen';
 import ChapterContentScreen from './App/Screen/ChapterContentScreen';
+import MyCourse from './App/Screen/MyCourse';
 
 const Stack=createStackNavigator();
 LogBox.ignoreAllLogs();

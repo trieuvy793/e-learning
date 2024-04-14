@@ -25,11 +25,7 @@ export default function LeaderBoard() {
 
   return (
     <View>
-      <View style={{ height: 160, backgroundColor: Colors.PRIMARY, padding: 30 }}>
-        <Text style={{ color: Colors.WHITE, fontSize: 30 }}>LeaderBoard</Text>
-      </View>
-
-      <View style={{marginTop:-40,height:"85%"}}>
+      <View style={{height:"100%"}}>
         <FlatList
           data={userList}
           renderItem={({ item, index }) => (

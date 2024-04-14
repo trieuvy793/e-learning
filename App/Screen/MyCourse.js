@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { useWindowDimensions } from 'react-native';
 import Colors from '../../assets/colors/Colors';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProblemDetailScreen from '../Components/ProblemDetailScreen/ProblemDetailScreen';
 
 const MyCourse = () => {
   const [problems, setProblems] = useState({});
@@ -68,20 +70,20 @@ const MyCourse = () => {
       <View>
         <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Level {selectedDifficulty}</Text>
         <View style={[styles.questionItem, styles.questionsContainer]}>
-        <FlatList
-          data={paginatedProblems}
-          renderItem={({ index, item }) => {
-            const questionIndex = (currentPage - 1) * pageSize + index + 1;
-            return (
-              <View style={[styles.questionItem, selectedSolution === item && styles.selectedSolution]}>
-              <TouchableOpacity onPress={() => { handleProblemPress(item); setSelectedSolution(item);}}>
-                <Text style={{ fontSize: 16, marginBottom: 10 }}>{questionIndex} {item.stat.question__title}</Text>
-              </TouchableOpacity>
-              </View>
-            )
-          }}
-          keyExtractor={item => item.stat.question_id.toString()}
-        />
+          <FlatList
+            data={paginatedProblems}
+            renderItem={({ index, item }) => {
+              const questionIndex = (currentPage - 1) * pageSize + index + 1;
+              return (
+                <View style={[styles.questionItem, selectedSolution === item && styles.selectedSolution]}>
+                  <TouchableOpacity onPress={() => { handleProblemPress(item); setSelectedSolution(item); }}>
+                    <Text style={{ fontSize: 16, marginBottom: 10 }}>{questionIndex} {item.stat.question__title}</Text>
+                  </TouchableOpacity>
+                </View>
+              )
+            }}
+            keyExtractor={item => item.stat.question_id.toString()}
+          />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
           <Button title="Prev" onPress={handlePrevPage} disabled={currentPage === 1} />
@@ -91,12 +93,9 @@ const MyCourse = () => {
       </View>
     );
   };
-
+  const Stack = createStackNavigator();
   return (
     <View style={{ flex: 1, padding: 10, backgroundColor: "#F2FAFF" }}>
-      <View style={{backgroundColor: Colors.PRIMARY, marginTop: 20, paddingBottom: 20, width: "100%", alignItems: "center", borderBottomWidth: 1, borderColor: "#ccc" }}>
-        <Text style={{ color: Colors.WHITE, fontSize: 18 }}>Leetcode Excercises</Text>
-      </View>
       <Button title="Choose Level" onPress={() => setModalVisible(true)} />
       <Modal
         animationType="slide"
@@ -140,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0e0e0',
   },
   questionsContainer: {
-    maxHeight: "80%",
+    maxHeight: "84%",
   }
 });
 

@@ -12,8 +12,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CourseDetailScreen from './App/Screen/CourseDetailScreen';
 import ChapterContentScreen from './App/Screen/ChapterContentScreen';
 import MyCourse from './App/Screen/MyCourse';
+import ProblemDetailScreen from './App/Components/ProblemDetailScreen/ProblemDetailScreen';
 
-const Stack=createStackNavigator();
+const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
 export default function App() {
 
@@ -38,7 +39,7 @@ export default function App() {
             <SignedIn>
               <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
-                  <Stack.Screen name='Home' component={TabNavigation}/>
+                  <Stack.Screen name='Home' component={TabNavigation} />
                   <Stack.Screen name='course-detail' component={CourseDetailScreen} />
                   <Stack.Screen name='chapter-content' component={ChapterContentScreen} />
                 </Stack.Navigator>

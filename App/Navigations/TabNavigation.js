@@ -12,6 +12,8 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import ChatbotScreen from '../Screen/ChatbotScreen';
 import ProblemDetailScreen from '../Components/ProblemDetailScreen/ProblemDetailScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import MyProjects from '../Screen/MyProjects';
+import PaymentPolicy from '../Screen/PaymentPolicy';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -28,17 +30,15 @@ const ChatStackNavigator = () => (
   </Stack.Navigator>
 );
 
-const ProfileStackNavigator = () => (
-  <Stack.Navigator screenOptions={{ headerShown: true }}>
-    <Stack.Screen name="Profile" component={ProfileScreen} />
-  </Stack.Navigator>
-);
+// const ProfileStackNavigator = () => (
+//   <Stack.Navigator screenOptions={{ headerShown: false }}>
+//     <Stack.Screen name="Profile" component={ProfileScreen} />
+//     <Stack.Screen name='leader-board' component={LeaderBoard} />
+//     <Stack.Screen name='my-projects' component={MyProjects} />
+//     <Stack.Screen name='payment-policy' component={PaymentPolicy} />
+//   </Stack.Navigator>
+// );
 
-const LeaderBoardStackNavigator = () => (
-  <Stack.Navigator screenOptions={{ headerShown: true }}>
-    <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
-  </Stack.Navigator>
-);
 
 export default function TabNavigation() {
   return (
@@ -60,14 +60,14 @@ export default function TabNavigation() {
           )
         }}
       />
-      <Tab.Screen name='leader-board' component={LeaderBoardStackNavigator}
+      {/* <Tab.Screen name='leader-board' component={LeaderBoard}
         options={{
           tabBarIcon: ({ color, size }) => (
             <SimpleLineIcons name="chart" size={22} color={color} />
           )
         }}
-      />
-      <Tab.Screen name='Profile' component={ProfileStackNavigator}
+      /> */}
+      <Tab.Screen name='profile' component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="user" size={22} color={color} />

@@ -7,16 +7,18 @@ module.exports = {
     extend: {
       colors: {
         'PRIMARY': '#354573', 
-        'LIGHT_PRIMARY': '#E9EFFF',
-        'LIGHT_GREEN': '#F2FAF7', 
+        'LIGHT-PRIMARY': '#E9EFFF',
+        'LIGHT-GREEN': '#F2FAF7', 
         'SECONDARY': '#6F7597',
         'GREEN': '#32C48D',
         'RED': '#FF5F54',
+        'BLUE': '#208BE8',
         'BROWN': '#580600',
         'BEIGE': '#F4E9D9',
         'BACKGROUND': '#F2FAFF',
-        'SECONDARY_BG': '#C6D6FF',
-        'LIGHT_PINK': '#F6E8E8'
+        'SECONDARY-BG': '#C6D6FF',
+        'LIGHT-PINK': '#F6E8E8',
+        'LIGHT-RED': '#FFD0D0'
       },
       fontFamily: {
         custom: ['lato', ...fontFamily.sans]

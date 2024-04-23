@@ -180,7 +180,7 @@ export const GetAllUsers=async()=>{
 export const GetAllProgressCourse=async(userEmail)=>{
   const query = gql`
   query GetAllUserEnrolledProgressCourse {
-    userEnrolledCourses(where: {userEmail: "trieuvygialai@gmail.com"}) {
+    userEnrolledCourses(where: {userEmail: "`+userEmail+`"}) {
       completedChapter {
         chapterId
       }

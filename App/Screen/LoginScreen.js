@@ -34,7 +34,7 @@ export default function LoginScreen() {
   }, []);
 
   return (
-    <View className="bg-LIGHT_PRIMARY w-full h-full relative">
+    <View className="bg-LIGHT-PRIMARY w-full h-full relative">
       <View>
         <Snow></Snow>
         <View className="flex flex-row top-10 justify-center">

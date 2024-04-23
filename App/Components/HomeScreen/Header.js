@@ -20,7 +20,7 @@ export default function Header() {
             className="h-12 w-12 rounded-full" />
           <View>
             <Text className="text-xs">Welcome Back!</Text>
-            <Text className="text-xl bold">{user?.fullName}</Text>
+            <Text className="text-xl">{user?.fullName}</Text>
           </View>
         </View>
         <View className="flex flex-row items-center gap-3">
@@ -29,7 +29,7 @@ export default function Header() {
         </View>
       </View>
 
-      <View className="bg-SECONDARY_BG w-full h-4/6 mt-5 rounded-3xl flex">
+      <View className="bg-SECONDARY-BG w-full h-4/6 mt-5 rounded-3xl flex">
         <View className="mt-4 z-10">
           <Text className="ml-8 text-PRIMARY text-lg">What can I help you?</Text>
           <View className="bg-white mt-5 mx-6 rounded-xl flex flex-row items-center justify-between pr-4">

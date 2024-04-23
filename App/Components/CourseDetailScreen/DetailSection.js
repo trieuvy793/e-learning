@@ -30,13 +30,13 @@ export default function DetailSection({ course, description, enrollCourse, userE
         <Text className="text-sm text-justify">{course?.description?.markdown}</Text>
       </View>}
       <View className="flex flex-row justify-between">
-        <TouchableOpacity className="flex flex-row mt-4 bg-LIGHT_PINK py-4 px-9 rounded-2xl" onPress={()=>description.showDescription?description.setShowDescription(false):description.setShowDescription(true)}>
+        <TouchableOpacity className="flex flex-row mt-4 bg-LIGHT-PINK py-4 px-9 rounded-2xl" onPress={()=>description.showDescription?description.setShowDescription(false):description.setShowDescription(true)}>
           <Text className="text-base">Description</Text>
         </TouchableOpacity>
         {userEnrolledCourse?.length==0 ? (
           <TouchableOpacity
             onPress={handleEnrollCourse}
-            className={`flex flex-row mt-4 bg-SECONDARY_BG py-4 px-9 rounded-2xl ${loading ? 'opacity-50' : ''}`}
+            className={`flex flex-row mt-4 bg-SECONDARY-BG py-4 px-9 rounded-2xl ${loading ? 'opacity-50' : ''}`}
             disabled={loading}
           >
             {loading ? (

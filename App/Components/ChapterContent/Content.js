@@ -49,7 +49,7 @@ export default function Content({ content, onChapterFinish }) {
               onPress={() => {onNextBtnPress(index); content?.length > index + 1 ? '' : setIsFinish(true)}}
               disabled={isFinish}
             >
-              <Text style={{ padding: 15, backgroundColor: Colors.PRIMARY, color: Colors.WHITE, borderRadius: 10, textAlign: 'center', fontSize: 17 }}>
+              <Text style={{ padding: 15, backgroundColor:'blue', color: Colors.WHITE, borderRadius: 10, textAlign: 'center', fontSize: 17 }}>
                 {
                   content?.length > index + 1 ? 'Next' : 'Finish'
                 }

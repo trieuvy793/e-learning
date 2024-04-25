@@ -24,11 +24,11 @@ const MyCourseStackNavigator = () => (
   </Stack.Navigator>
 );
 
-const ChatStackNavigator = () => (
-  <Stack.Navigator screenOptions={{ headerShown: true }}>
-    <Stack.Screen name="Global Chat" component={ChatbotScreen} />
-  </Stack.Navigator>
-);
+// const ChatStackNavigator = () => (
+//   <Stack.Navigator screenOptions={{ headerShown: false }}>
+//     <Stack.Screen name="Global Chat" component={ChatbotScreen} />
+//   </Stack.Navigator>
+// );
 
 // const ProfileStackNavigator = () => (
 //   <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -74,7 +74,7 @@ export default function TabNavigation() {
           )
         }}
       />
-      <Tab.Screen name='chatbot' component={ChatStackNavigator}
+      <Tab.Screen name='chatbot' component={ChatbotScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />

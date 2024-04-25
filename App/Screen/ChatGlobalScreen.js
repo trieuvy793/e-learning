@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, Keyboard
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import Bot from './../../../assets/images/bot.png'
 import { useNavigation } from '@react-navigation/native';
 
 const ChatGPT = () => {
@@ -38,14 +37,13 @@ const ChatGPT = () => {
             style={styles.container}
         >
             <View style={styles.inner}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 20 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, marginBottom:20 }}>
                     <TouchableOpacity onPress={() => navigate.goBack()}>
                         <Feather name="x" size={24} color="black" style={{ paddingLeft: 10 }} />
                     </TouchableOpacity>
-                    <Image source={Bot} style={{ width: 40, height: 40 }} />
-                    <Text style={{ color: '#C6D6FF' }}>......</Text>
+                    <Text style={styles.title}>Chat room</Text>
+                    <Text style={{color:'#C6D6FF'}}>......</Text>
                 </View>
-                <Text style={styles.title}>Cody Assistant</Text>
                 <FlatList
                     data={data}
                     keyExtractor={(item, index) => index.toString()}
@@ -82,8 +80,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        marginBottom: 10,
-        textAlign: 'center',
+        textAlign: 'center'
     },
     body: {
         backgroundColor: '#FFFFFF',

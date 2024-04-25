@@ -17,6 +17,9 @@ import LeaderBoard from './App/Screen/LeaderBoard';
 import MyProjects from './App/Screen/MyProjects';
 import PaymentPolicy from './App/Screen/PaymentPolicy';
 import ProfileScreen from './App/Screen/ProfileScreen';
+import ChatGlobalScreen from './App/Screen/ChatGlobalScreen';
+import ChatGPT from './App/Components/GPT/ChatGPT';
+import ChatbotScreen from './App/Screen/ChatbotScreen';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -53,6 +56,11 @@ export default function App() {
                     <Stack.Screen name='leader-board' component={LeaderBoard} />
                     <Stack.Screen name='my-projects' component={MyProjects} />
                     <Stack.Screen name='payment-policy' component={PaymentPolicy} />
+                  </Stack.Group>
+                  <Stack.Group>
+                    <Stack.Screen name='ChatbotScreen' component={ChatbotScreen} />
+                    <Stack.Screen name='bot-screen' component={ChatGPT} />
+                    <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
                   </Stack.Group>
                 </Stack.Navigator>
               </NavigationContainer>

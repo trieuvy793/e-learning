@@ -11,7 +11,7 @@ import { GetPoint } from '../../Services/getPoint';
 export default function Header() {
   const { isLoaded, isSignedIn, user } = useUser();
   const point = GetPoint();
-  console.log("header", point)
+
   return isLoaded && (
     <View>
       <View className="flex flex-row justify-between mx-3">

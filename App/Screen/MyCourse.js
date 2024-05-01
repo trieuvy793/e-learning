@@ -71,6 +71,7 @@ const MyCourse = () => {
         <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Level {selectedDifficulty}</Text>
         <View style={[styles.questionItem, styles.questionsContainer]}>
           <FlatList
+            showsVerticalScrollIndicator="false"
             data={paginatedProblems}
             renderItem={({ index, item }) => {
               const questionIndex = (currentPage - 1) * pageSize + index + 1;

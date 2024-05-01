@@ -53,29 +53,6 @@ export default function ChapterSection({ chapterList, userEnrolledCourse, chapte
   // }
 
   return chapterList && (
-    // <View style={{ padding: 10, backgroundColor: Colors.WHITE, borderRadius: 15 }}>
-    //   <Text style={{ fontWeight: 'bold', fontSize: 22 }}>Chapters</Text>
-    //   {chapterList.map((item, index) => (
-    //     <TouchableOpacity key={index} style={[checkIsChapterCompleted(item.id)
-    //       ? styles.completeChapter
-    //       : styles.inCompleteChapter]}
-    //       onPress={() => OnChapterPress(item)}>
-    //       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-    //         <Text style={[checkIsChapterCompleted(item.id)
-    //           ? { fontSize: 27, fontWeight: 'bold', color: Colors.GREEN }
-    //           : { fontSize: 27, fontWeight: 'bold' }]}>{checkIsChapterCompleted(item.id)
-    //             ? <Ionicons name="checkmark-circle" size={30} color={Colors.GREEN} />
-    //             : index + 1}</Text>
-    //         <Text style={[checkIsChapterCompleted(item.id)
-    //           ? { fontSize: 21, color: Colors.GREEN }
-    //           : { fontSize: 21 }]}>{item.title}</Text>
-    //       </View>
-    //       {userEnrolledCourse.length == 0
-    //         ? <Ionicons name="lock-closed" size={25} color="black" />
-    //         : <Ionicons name="play" size={25} color={checkIsChapterCompleted(item.id) ? Colors.GREEN : Colors.BLACK} />}
-    //     </TouchableOpacity>
-    //   ))}
-    // </View>
     <View className="mt-2">
       <View className="flex flex-row items-center gap-2">
         <Text className="text-xl">Chapter</Text>
@@ -96,24 +73,13 @@ export default function ChapterSection({ chapterList, userEnrolledCourse, chapte
                 :<Ionicons name="play-circle-outline" size={34} color="black" />}
                 <Text className="text-xl">{index + 1}. {item.title}</Text>
               </View>
-              {/* {userEnrolledCourse.length == 0
-              ?<Ionicons name="lock-closed" size={16} color="#FFD200"/>
-              :index+1==1
-              ?checkIsChapterCompleted(item.id)
-              ?<Ionicons name="checkmark-circle" size={24} color="#32C48D"/>
-              :<AntDesign name="caretright" size={20} color="#32C48D"/> 
-              :checkIsChapterCompleted(item.id)
-              ?<Ionicons name="checkmark-circle" size={24} color="#32C48D"/>
-              :findIndexChapterCompleted(item.id)
-              ?<AntDesign name="caretright" size={20} color="#32C48D"/> 
-              :<Ionicons name="lock-closed" size={16} color="#FFD200"/>} */}
 
               {userEnrolledCourse.length == 0
               ?<Ionicons name="lock-closed" size={16} color="#FFD200"/>
               : index < completedChapter
               ? <Ionicons name="checkmark-circle" size={24} color="#32C48D"/>
               : index == completedChapter
-              ? <AntDesign name="caretright" size={20} color="#32C48D"/>
+              ? <Ionicons name="play-outline" size={20} />
               : <Ionicons name="lock-closed" size={16} color="#FFD200"/>}
             </TouchableOpacity>
           </View>

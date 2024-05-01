@@ -47,9 +47,7 @@ export default function ChapterContentScreen() {
   }
 
   return param.content && (
-    <ScrollView>
       <Content content={param.content}
         onChapterFinish={() => onChapterFinish()} />
-    </ScrollView>
   )
 }

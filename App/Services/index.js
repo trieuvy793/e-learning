@@ -209,6 +209,7 @@ export const GetAllProgressCourse=async(userEmail)=>{
         id
         level
         name
+        author
         price
         time
       }

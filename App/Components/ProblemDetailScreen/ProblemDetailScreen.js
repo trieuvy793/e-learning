@@ -1,6 +1,6 @@
 'use strict'
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Keyboard } from 'react-native'; 
+import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Keyboard } from 'react-native';
 import RenderHtml from 'react-native-render-html';
 import { useWindowDimensions } from 'react-native';
 import { MaterialCommunityIcons, Ionicons, AntDesign, Zocial } from '@expo/vector-icons';
@@ -118,7 +118,7 @@ const ProblemDetailScreen = ({ route }) => {
     } catch (error) {
       console.error(error);
     }
-    
+
   };
 
   const renderSolutionItem = ({ item }) => (
@@ -151,7 +151,7 @@ const ProblemDetailScreen = ({ route }) => {
       console.error(error);
     }
   };
-  
+
 
   return (
     <View style={styles.container}>
@@ -194,7 +194,9 @@ const ProblemDetailScreen = ({ route }) => {
             </View>
           </View>
           {showDetail && (
-            <ScrollView style={styles.scrollView && styles.solutionDetailContainer}>
+            <ScrollView
+              showsVerticalScrollIndicator="false"
+              style={styles.scrollView && styles.solutionDetailContainer}>
               <View style={styles.viewContainer}>
                 <RenderHtml
                   contentWidth={width}
@@ -227,7 +229,7 @@ const ProblemDetailScreen = ({ route }) => {
                 </View>
               </TouchableOpacity>
               {getResponse && (
-                <ScrollView style={styles.scrollView && styles.solutionDetailContainer}>
+                <ScrollView showsVerticalScrollIndicator="false" style={styles.scrollView && styles.solutionDetailContainer}>
                   <View>
                     <RenderHtml
                       contentWidth={width}
@@ -249,6 +251,7 @@ const ProblemDetailScreen = ({ route }) => {
             <>
               {solutionsList && (
                 <FlatList style={styles.scrollView && styles.solutionDetailContainer}
+                  showsVerticalScrollIndicator="false"
                   data={solutionsList}
                   renderItem={renderSolutionItem}
                   keyExtractor={(item) => item.id.toString()}
@@ -261,7 +264,7 @@ const ProblemDetailScreen = ({ route }) => {
         <Text>Loading...</Text>
       )}
       {solutionDetail ? (
-        <ScrollView style={styles.scrollView && styles.solutionDetailContainer}>
+        <ScrollView showsVerticalScrollIndicator="false" style={styles.scrollView && styles.solutionDetailContainer}>
           <View>
             <Text style={styles.solutionDetailTitle}>{solutionDetail.title}</Text>
             <RenderHtml
@@ -299,7 +302,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   infoContainer: {
-    backgroundColor: '#C6D6FF',
+    backgroundColor: '#F6E8E8',
     padding: 6,
     borderRadius: 10,
   },

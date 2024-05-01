@@ -33,7 +33,6 @@ export default function CourseDetailScreen() {
 
   const UserEnrolledCourse=()=>{
     enrollCourse(params.course.id,user.primaryEmailAddress.emailAddress).then(resp=>{
-      console.log("hi"+resp?.course);
       if (resp)
       {
         // ToastAndroid.show('Course Enrolled Successfully!', ToastAndroid.LONG);
@@ -56,7 +55,7 @@ export default function CourseDetailScreen() {
     <ScrollView className="p-5 pt-0 bg-BACKGROUND">
       <TouchableOpacity className="flex flex-row items-center mt-3 justify-between" onPress={()=>navigate.goBack()}>
         <AntDesign name="left" size={24} color="black"/>
-        <Text className="text-xl">{params.course.level} Course</Text>
+        <Text className="text-xl">{params.course?.level} Course</Text>
         <Text></Text>
       </TouchableOpacity>
       

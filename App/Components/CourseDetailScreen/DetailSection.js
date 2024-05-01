@@ -19,7 +19,7 @@ export default function DetailSection({ course, description, enrollCourse, userE
     <View className="p-3">
       <Image source={{ uri: course?.banner?.url }} className="w-full h-56 rounded-2xl"/>
       <View className="mt-1">
-        <Text className="text-xl">{course.name}</Text>
+        <Text className="text-xl">{course?.name}</Text>
         <OptionItem icon={'person-circle-outline'} value={"Created by " + course.author} />
         <View className="flex flex-row justify-between">
           <OptionItem icon={'time-outline'} value={course.time} />
@@ -46,7 +46,7 @@ export default function DetailSection({ course, description, enrollCourse, userE
             )}
           </TouchableOpacity>
         ) : (
-          <View className="flex flex-row mt-4 bg-LIGHT_PRIMARY py-4 px-9 rounded-2xl">
+          <View className="flex flex-row mt-4 bg-LIGHT-PRIMARY py-4 px-9 rounded-2xl">
             <Text className="text-base">Course Enrolled</Text>
           </View>
         )}

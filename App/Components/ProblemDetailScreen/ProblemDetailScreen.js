@@ -195,7 +195,7 @@ const ProblemDetailScreen = ({ route }) => {
           </View>
           {showDetail && (
             <ScrollView
-              showsVerticalScrollIndicator="false"
+              showsVerticalScrollIndicator={false}
               style={styles.scrollView && styles.solutionDetailContainer}>
               <View style={styles.viewContainer}>
                 <RenderHtml
@@ -229,7 +229,7 @@ const ProblemDetailScreen = ({ route }) => {
                 </View>
               </TouchableOpacity>
               {getResponse && (
-                <ScrollView showsVerticalScrollIndicator="false" style={styles.scrollView && styles.solutionDetailContainer}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView && styles.solutionDetailContainer}>
                   <View>
                     <RenderHtml
                       contentWidth={width}
@@ -251,7 +251,7 @@ const ProblemDetailScreen = ({ route }) => {
             <>
               {solutionsList && (
                 <FlatList style={styles.scrollView && styles.solutionDetailContainer}
-                  showsVerticalScrollIndicator="false"
+                  showsVerticalScrollIndicator={false}
                   data={solutionsList}
                   renderItem={renderSolutionItem}
                   keyExtractor={(item) => item.id.toString()}
@@ -264,7 +264,7 @@ const ProblemDetailScreen = ({ route }) => {
         <Text>Loading...</Text>
       )}
       {solutionDetail ? (
-        <ScrollView showsVerticalScrollIndicator="false" style={styles.scrollView && styles.solutionDetailContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView && styles.solutionDetailContainer}>
           <View>
             <Text style={styles.solutionDetailTitle}>{solutionDetail.title}</Text>
             <RenderHtml
@@ -290,7 +290,7 @@ const ProblemDetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 12,
     backgroundColor: '#F2FAFF',
   },
   viewContainer: {

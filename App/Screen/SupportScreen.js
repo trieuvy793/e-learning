@@ -24,7 +24,7 @@ export default function SupportScreen() {
       <View style={{ backgroundColor: 'white', height: '100%' }}>
         <TouchableOpacity onPress={() => navigate.navigate('ide-screen')} style={styles.boxIDE}>
           <Image source={IDE} style={styles.imageIDE} />
-          <Text style={styles.textBot}>IDE</Text>
+          <Text style={styles.textIDE}>IDE</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     borderColor: '#FF5F54',
     borderWidth: 0.9,
     marginHorizontal: 18,
-    marginTop: 70
+    marginTop: 18
   },
   image: {
     height: 90,
@@ -82,6 +82,15 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   textGlobal: {
+    fontSize: 18,
+    marginBottom: 14,
+    paddingTop: 14,
+    borderTopWidth: 0.9,
+    borderColor: '#007BE5',
+    width: '100%',
+    textAlign: 'center'
+  },
+  textIDE: {
     fontSize: 18,
     marginBottom: 14,
     paddingTop: 14,

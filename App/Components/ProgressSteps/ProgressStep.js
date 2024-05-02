@@ -305,7 +305,7 @@ ProgressStep.propTypes = {
   errors: PropTypes.bool,
   removeBtnRow: PropTypes.bool,
   scrollable: PropTypes.bool,
-  activeStep: PropTypes.number.isRequired,
+  activeStep: PropTypes.number,
 };
 
 ProgressStep.defaultProps = {

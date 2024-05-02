@@ -35,7 +35,6 @@ export default function ChapterContentScreen() {
           const updateUserDetail = resp?.updateUserDetail;
 
           const point = updateUserDetail?.point;
-          console.log(resp);
           setUserPoints(point);
           ToastAndroid.show('Course Completed!', ToastAndroid.LONG);
           setIsChapterComplete(true);

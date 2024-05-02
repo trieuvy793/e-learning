@@ -27,12 +27,13 @@ export default function Content({ content, onChapterFinish }) {
         {content.slice(0, 5).map((item, index) => {
           return (
             <ProgressStep key={index} scrollable={true} onSubmit={onChapterFinish}>
-              <Text style={{ fontSize: 22, marginTop: 5, fontWeight: '500', textAlign: 'center' }}>{item.heading}</Text>
-              <View style={{ width: Dimensions.get('screen').width, height: Dimensions.get('screen').height * 0.7, padding: 20 }}>
+              <Text style={{ fontSize: 22, fontWeight: '500', textAlign: 'center' }}>{item.heading}</Text>
+              <View style={{ width: Dimensions.get('screen').width, height: Dimensions.get('screen').height * 0.7, padding: 10 }}>
 
                 <ScrollView 
+                  showsVerticalScrollIndicator={false}
                   style={{ borderWidth: 1, borderRadius: 16, borderColor:'#208BE8' }} className="bg-white"
-                  showsVerticalScrollIndicator="false">
+                  >
                   <View style={{padding: 10}}>
                     <ContentItem description={item?.description?.html} output={item?.output?.html} />
                   </View>

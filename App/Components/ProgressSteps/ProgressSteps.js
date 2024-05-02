@@ -31,7 +31,7 @@ const ProgressSteps = ({ activeStep: initialActiveStep, isComplete, topOffset, m
         <View key={i}>
           <View>
             <StepIcon
-              // stepNum={i + 1}
+              stepNum={i + 1}
               label={children[i].props.label}
               isFirstStep={i === 0}
               isLastStep={i === stepCount - 1}
@@ -63,14 +63,14 @@ const ProgressSteps = ({ activeStep: initialActiveStep, isComplete, topOffset, m
       gap: -40,
       alignSelf: 'center',
       flexDirection: 'row',
-      top: topOffset,
-      marginBottom: marginBottom,
+      top: 14,
+      marginBottom: 14
     },
   };
 
   return (
     <View style={{ flex: 1 }}>
-      <View className="flex-row items-center justify-between px-3">
+      <View className="flex-row items-center justify-between px-3" style={{borderBottomWidth: 0.2, marginBottom: 9}}>
         <TouchableOpacity onPress={() => navigate.goBack()}>
           <Feather name="x" size={24} color="black" />
         </TouchableOpacity>

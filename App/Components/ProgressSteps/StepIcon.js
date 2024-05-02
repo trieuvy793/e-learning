@@ -196,10 +196,10 @@ const StepIcon = ({
 };
 
 StepIcon.propTypes = {
-  stepCount: PropTypes.number.isRequired,
-  stepNum: PropTypes.number.isRequired,
-  isFirstStep: PropTypes.bool.isRequired,
-  isLastStep: PropTypes.bool.isRequired,
+  stepCount: PropTypes.number,
+  stepNum: PropTypes.number,
+  isFirstStep: PropTypes.bool,
+  isLastStep: PropTypes.bool,
   borderWidth: PropTypes.number,
   borderStyle: PropTypes.string,
   activeStepIconBorderColor: PropTypes.string,
@@ -220,7 +220,7 @@ StepIcon.propTypes = {
   completedCheckColor: PropTypes.string,
   isCompletedStep: PropTypes.bool,
   isActiveStep: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 StepIcon.defaultProps = {

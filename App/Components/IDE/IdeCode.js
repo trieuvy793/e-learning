@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import CodeEditor, { CodeEditorSyntaxStyles } from '@rivascva/react-native-code-editor';
 
-const IdeCode = ({ initialValue, onCodeChange }) => {
+const IdeCode = ({ initialValue, onCodeChange, readOnly=false }) => {
     const [code, setCode] = useState(initialValue);
 
     const handleChange = (newCode) => {
@@ -15,7 +15,7 @@ const IdeCode = ({ initialValue, onCodeChange }) => {
             style={{
                 fontSize: 10,
                 inputLineHeight: 18,
-                highlighterLineHeight: 18,
+                highlighterLineHeight: 10,
                 padding: 16,
                 minWidth: '100%',
             }}
@@ -23,9 +23,10 @@ const IdeCode = ({ initialValue, onCodeChange }) => {
             language="python3"
             initialValue={initialValue}
             syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
-            showLineNumbers
+            // showLineNumbers
             showCursor={true}
             onChange={handleChange}
+            readOnly={readOnly}
         />
     );
 };

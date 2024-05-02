@@ -145,7 +145,7 @@ const ProblemDetailScreen = ({ route }) => {
       const dataInput = "";
       const responsePromise = await executePythonCode(lang, code, dataInput);
       responsePromise.stdout = base64Decode(responsePromise.stdout);
-      console.log(responsePromise);
+      // console.log(responsePromise);
       setResponse(responsePromise);
     } catch (error) {
       console.error(error);

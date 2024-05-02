@@ -39,9 +39,6 @@ export default function HomeScreen() {
       <View>
         <CourseList level={'Advance'} />
       </View>
-      <View>
-        <CourseList level={'Basic'} />
-      </View>
     </View>
   );
 

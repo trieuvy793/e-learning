@@ -67,16 +67,16 @@ export default function TabNavigation() {
           )
         }}
       /> */}
+      <Tab.Screen name='Support' component={SupportScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (<Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />
+          )
+        }}
+      />
       <Tab.Screen name='Profile' component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="user" size={22} color={color} />
-          )
-        }}
-      />
-      <Tab.Screen name='Support' component={SupportScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (<Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />
           )
         }}
       />

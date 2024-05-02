@@ -19,10 +19,10 @@ const checkStatus = async (token) => {
       }, 2000)
       return
     } else {
-      const stdoutValue = response.data.stdout;
-      const decodedStdout = base64Decode(stdoutValue);
-      const descriptionValue = response.data.status.description;
-      console.log(descriptionValue + ": " + decodedStdout);
+      // const stdoutValue = response.data.stdout;
+      // const decodedStdout = base64Decode(stdoutValue);
+      // const descriptionValue = response.data.status.description;
+      // console.log(descriptionValue + ": " + decodedStdout);
 
       return response.data;
     }

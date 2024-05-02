@@ -27,7 +27,6 @@ export default function ChapterSection({ chapterList, userEnrolledCourse, chapte
   }
 
   const checkIsChapterCompleted = (chapterId) => {
-    console.log(userEnrolledCourse)
     if (userEnrolledCourse[0]?.completedChapter?.length <= 0) {
       return false;
     }
@@ -63,7 +62,7 @@ export default function ChapterSection({ chapterList, userEnrolledCourse, chapte
       </View>
       <View className="bg-white mt-3 rounded-2xl">
         {chapterList.map((item, index) => (
-          <View className={index + 1!=chapterList.length?"mx-6 mt-5 pb-4 border-b border-gray-200":"mx-6 mt-4 pb-4"}>
+          <View key={item.id} className={index + 1!=chapterList.length?"mx-6 mt-5 pb-4 border-b border-gray-200":"mx-6 mt-4 pb-4"}>
             <TouchableOpacity className="flex flex-row items-center justify-between" 
             disabled={index > completedChapter ? true : false}
             onPress={() => OnChapterPress(item)}>

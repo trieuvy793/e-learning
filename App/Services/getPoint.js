@@ -9,10 +9,7 @@ export const GetPoint = () => {
   useEffect(() => {
     const fetchData = async () => {
       const resp = await getUserDetail(user.primaryEmailAddress.emailAddress);
-      console.log(resp);
       if (resp.userDetail) {
-        console.log(resp);
-        console.log("get point: ", resp.userDetail?.point);
         setUserPoints(Number(resp.userDetail?.point));
       } else
         setUserPoints(0);

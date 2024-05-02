@@ -19,7 +19,9 @@ import PaymentPolicy from './App/Screen/PaymentPolicy';
 import ProfileScreen from './App/Screen/ProfileScreen';
 import ChatGlobalScreen from './App/Screen/ChatGlobalScreen';
 import ChatGPT from './App/Components/GPT/ChatGPT';
-import ChatbotScreen from './App/Screen/ChatbotScreen';
+import ChatbotScreen from './App/Screen/SupportScreen';
+import IDEScreen from './App/Screen/IDEScreen';
+import SupportScreen from './App/Screen/SupportScreen';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -58,9 +60,10 @@ export default function App() {
                     <Stack.Screen name='payment-policy' component={PaymentPolicy} />
                   </Stack.Group>
                   <Stack.Group>
-                    <Stack.Screen name='ChatbotScreen' component={ChatbotScreen} />
+                    <Stack.Screen name='ChatbotScreen' component={SupportScreen} />
                     <Stack.Screen name='bot-screen' component={ChatGPT} />
                     <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
+                    <Stack.Screen name='ide-screen' component={IDEScreen} />
                   </Stack.Group>
                 </Stack.Navigator>
               </NavigationContainer>

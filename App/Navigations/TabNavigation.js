@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
-import ChatbotScreen from '../Screen/ChatbotScreen';
+import SupportScreen from '../Screen/SupportScreen';
 import ProblemDetailScreen from '../Components/ProblemDetailScreen/ProblemDetailScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyProjects from '../Screen/MyProjects';
@@ -46,14 +46,14 @@ export default function TabNavigation() {
       headerShown: false,
       tabBarStyle: { backgroundColor: "#E9EFFF" }
     }}>
-      <Tab.Screen name='home' component={HomeScreen}
+      <Tab.Screen name='Home' component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="home" size={22} color={color} />
           )
         }}
       />
-      <Tab.Screen name='my-course' component={MyCourseStackNavigator}
+      <Tab.Screen name='Leet Code' component={MyCourseStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="book" size={22} color={color} />
@@ -67,17 +67,16 @@ export default function TabNavigation() {
           )
         }}
       /> */}
-      <Tab.Screen name='profile' component={ProfileScreen}
+      <Tab.Screen name='Profile' component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="user" size={22} color={color} />
           )
         }}
       />
-      <Tab.Screen name='chatbot' component={ChatbotScreen}
+      <Tab.Screen name='Support' component={SupportScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />
+          tabBarIcon: ({ color, size }) => (<Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />
           )
         }}
       />

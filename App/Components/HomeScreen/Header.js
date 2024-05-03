@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useUser } from '@clerk/clerk-expo'
 import Colors from '../../../assets/colors/Colors';
 import Coin from './../../../assets/images/coin.png';
@@ -8,9 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { UserPointsContext } from '../../Context/UserPointsContext'
 import { GetPoint } from '../../Services/getPoint';
 
-export default function Header() {
+export default function Header({input, setInput}) {
   const { isLoaded, isSignedIn, user } = useUser();
   const point = GetPoint();
+  
 
   return isLoaded && (
     <View>
@@ -33,7 +34,7 @@ export default function Header() {
         <View className="mt-4 z-10">
           <Text className="ml-8 text-PRIMARY text-lg">What can I help you?</Text>
           <View className="bg-white mt-5 mx-6 rounded-xl flex flex-row items-center justify-between pr-4">
-            <TextInput placeholder='Search here' className="h-10 pl-4" />
+            <TextInput value={input} onChangeText={(text) => setInput(text)} placeholder='Search here' className="h-10 pl-4 w-5/6" />
             <Ionicons name="search" size={20}/>
           </View>
         </View>

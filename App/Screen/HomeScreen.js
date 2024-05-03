@@ -8,13 +8,21 @@ import { createNewUser, getUserDetail } from '../Services/index.js'
 import { UserPointsContext } from '../Context/UserPointsContext.js'
 import { GetPoint } from '../Services/getPoint.js'
 import CourseProgress from '../Components/HomeScreen/CourseProgress.js'
+import AllCourseList from '../Components/HomeScreen/AllCourseList.js'
+import { getAllCourseList } from './../Services'
+import { useIsFocused } from '@react-navigation/native'
 
 export default function HomeScreen() {
 
   const { isLoaded, signOut } = useAuth();
   const { user } = useUser();
   const { userPoints, setUserPoints } = useContext(UserPointsContext);
-  
+  const [input, setInput] = useState("");
+  const isFocused = useIsFocused();
+  const [courseList, setCourseList] = useState([]);
+  const coursesByLevel = {};
+  const [refreshing, setRefreshing] = useState(false);
+
   useEffect(() => {
     user && createUser();
   }, [user])
@@ -28,32 +36,56 @@ export default function HomeScreen() {
     }
   }
 
-  const [refreshing, setRefreshing] = useState(false);
+  const getCourses = () => {
+    getAllCourseList().then(resp => {
+      setCourseList(resp?.courses);
+    })
+  }
 
-  const renderScreen = () => (
-    <View style={{ padding: 20 }}>
+  useEffect(() => {
+    if (isFocused || refreshing) {
+      getCourses();
+    }
+  }, [isFocused, refreshing])
+
+  courseList.forEach(course => {
+    if (!coursesByLevel[course.level]) {
+      coursesByLevel[course.level] = [];
+    }
+    coursesByLevel[course.level].push(course);
+  });
+
+  const renderCourses = () => {
+    const levels = Object.keys(coursesByLevel);
+    return (
       <View>
-        <CourseProgress refreshing={refreshing}/>
-        <CourseList level={'Basic'} />
+        {levels.map(level => (
+          <View key={level}>
+            <CourseList level={level} data={coursesByLevel[level]} refreshing={refreshing} />
+          </View>
+        ))}
       </View>
-      <View>
-        <CourseList level={'Advance'} />
-      </View>
+    );
+  }
+  
+
+  const renderAllCourse = () => (
+    <View>
+      <AllCourseList data={courseList} input={input} setInput={setInput} />
     </View>
   );
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      renderScreen();
       setRefreshing(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   return (
     <View className="bg-BACKGROUND">
       <View className="p-5 h-52">
-        <Header />
+        <Header input={input} setInput={setInput} />
       </View>
       <SafeAreaView>
         <ScrollView
@@ -62,7 +94,11 @@ export default function HomeScreen() {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-          {renderScreen()}
+          <View style={{ padding: 20 }}>
+            {renderAllCourse()}
+            <CourseProgress refreshing={refreshing} />
+            {renderCourses()}
+          </View>
         </ScrollView>
       </SafeAreaView>
 

@@ -194,8 +194,11 @@ export const getUserDetail=async(email)=>{
   query getUserDetails {
     userDetail(where: {email: "`+email+`"}) {
       point
+      profileImage
+      userName
+      email
     }
-  }  
+  }
   `
   const result = await request(MASTER_URL, query);
   return result;
@@ -258,5 +261,24 @@ export const GetAllProgressCourse=async(userEmail)=>{
   `
 
   const result = await request(MASTER_URL, query);
+  return result;
+}
+
+export const UpdateUserDetail=async(userEmail,profileImage,userName)=>{
+  const mutationQuery = `
+  mutation UpdateUserDetail {
+    updateUserDetail(where: {email: "`+userEmail+`"}, data: {profileImage: "`+profileImage+`", userName: "`+userName+`"}) {
+      id
+      email
+      profileImage
+      userName
+    }
+    publishUserDetail(where: {email: "`+userEmail+`"}) {
+      id
+    }
+  }
+  `
+
+  const result = await request(MASTER_URL, mutationQuery);
   return result;
 }

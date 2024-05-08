@@ -16,7 +16,7 @@ export const GetPoint = () => {
     };
 
     fetchData();
-  }, [user.primaryEmailAddress.emailAddress, setUserPoints]);
+  }, );
   return userPoints;
 }
 

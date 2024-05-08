@@ -10,7 +10,7 @@ export default function Content({ content, onChapterFinish }) {
   let contentRef;
   const navigation = useNavigation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isFinish, setIsFinish] = useState(false);
+
 
   const progressStepsStyle = {
     activeStepIconBorderColor: '#C6D6FF',

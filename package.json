@@ -21,6 +21,7 @@
     "deprecated-react-native-prop-types": "^2.3.0",
     "expo": "~50.0.17",
     "expo-font": "~11.10.3",
+    "expo-image-picker": "^14.7.1",
     "expo-status-bar": "~1.11.1",
     "expo-web-browser": "~12.8.2",
     "graphql": "^15.8.0",

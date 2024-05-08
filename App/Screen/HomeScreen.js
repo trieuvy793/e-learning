@@ -22,6 +22,7 @@ export default function HomeScreen() {
   const [courseList, setCourseList] = useState([]);
   const coursesByLevel = {};
   const [refreshing, setRefreshing] = useState(false);
+  const point = GetPoint();
 
   useEffect(() => {
     user && createUser();
@@ -83,25 +84,25 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View className="bg-BACKGROUND">
+    <ScrollView 
+      className="bg-BACKGROUND" 
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View className="p-5 h-52">
-        <Header input={input} setInput={setInput} />
+        <Header input={input} point={point} setInput={setInput} />
       </View>
-      <SafeAreaView>
-        <ScrollView
-          style={{ marginBottom: 380 }}
+        <View
+          style={{}}
           showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }>
+          >
           <View style={{ padding: 20 }}>
             {renderAllCourse()}
             <CourseProgress refreshing={refreshing} />
             {renderCourses()}
           </View>
-        </ScrollView>
-      </SafeAreaView>
+        </View>
 
-    </View>
+    </ScrollView>
   )
 }

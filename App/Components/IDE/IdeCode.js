@@ -13,9 +13,9 @@ const IdeCode = ({ initialValue, onCodeChange, readOnly=false }) => {
     return (
         <CodeEditor
             style={{
-                fontSize: 10,
-                inputLineHeight: 18,
-                highlighterLineHeight: 10,
+                fontSize: 12,
+                inputLineHeight: 12,
+                highlighterLineHeight: 12,
                 padding: 16,
                 minWidth: '100%',
             }}

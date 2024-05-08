@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Image, Dimensions } from 'react-native';
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,17 +6,40 @@ import { Feather } from '@expo/vector-icons';
 import Bot from './../../../assets/images/bot.png'
 import { useNavigation } from '@react-navigation/native';
 
+const options = {
+    method: 'POST',
+    url: 'https://cheapest-gpt-4-turbo-gpt-4-vision-chatgpt-openai-ai-api.p.rapidapi.com/v1/chat/completions',
+    headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': '44a9e9e889msh5af9ac4cd38f353p16fff1jsnb4364defb1bc',
+        'X-RapidAPI-Host': 'cheapest-gpt-4-turbo-gpt-4-vision-chatgpt-openai-ai-api.p.rapidapi.com'
+    },
+    data: {
+        messages: [
+            {
+                role: 'user',
+                content: ''
+            }
+        ],
+        model: 'gpt-4-turbo-preview',
+        max_tokens: 200,
+        temperature: 0.9
+    }
+};
+
 const ChatGPT = () => {
     const [data, setData] = useState([]);
     const [textInput, setTextInput] = useState('');
     const navigate = useNavigation();
-    const apiKey = '44a9e9e889msh5af9ac4cd38f353p16fff1jsnb4364defb1bc';
-    const apiUrl = 'https://simple-chatgpt-api.p.rapidapi.com/ask';
+
     const windowWidth = Dimensions.get('window').width;
 
-    const handleSend = async () => {        
+    const handleSend = async () => {
         try {
-            const answer = "híidfjsiifsifjidsjcjffhbdsjfhusdhfiehjifjndsjkfnkssidjfisj";
+            options.data.messages[0].content = textInput;
+            const response = await axios.request(options);
+            const answer = response.data.choices[0].message.content;
+
             setData([...data, { type: 'user', text: textInput }, { type: 'bot', text: answer }]);
             setTextInput('');
         } catch (error) {
@@ -102,7 +125,7 @@ const styles = StyleSheet.create({
         width: '90%',
         padding: 10,
         marginBottom: 20,
-        marginTop:10,
+        marginTop: 10,
         borderRadius: 96,
         paddingLeft: 18
     },
@@ -113,10 +136,10 @@ const styles = StyleSheet.create({
     },
     messageContainer: {
         maxWidth: '80%',
-        borderRadius:14,
-        marginTop:20,
-        marginBottom:2,
-        marginHorizontal:20
+        borderRadius: 14,
+        marginTop: 20,
+        marginBottom: 2,
+        marginHorizontal: 20
     },
     userContainer: {
         alignSelf: 'flex-end',

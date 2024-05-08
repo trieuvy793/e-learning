@@ -15,7 +15,7 @@ const ChatGPT = () => {
 
     const handleSend = async () => {        
         try {
-            const answer = "híidfjsiifsifjidsjcjffhbdsjfhusdhfiehjifjndsjkfnkssidjfisj";
+            const answer = "This is the answer available in the code";
             setData([...data, { type: 'user', text: textInput }, { type: 'bot', text: answer }]);
             setTextInput('');
         } catch (error) {

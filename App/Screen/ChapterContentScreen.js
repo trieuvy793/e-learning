@@ -14,9 +14,6 @@ export default function ChapterContentScreen() {
   const navigate = useNavigation();
   const { isChapterComplete, setIsChapterComplete } = useContext(CompleteChapterContext);
 
-  //Chapter Id
-  //Record Id
-
   useEffect(() => {
     // console.log("ChapterId",param.chapterId)
     // console.log("RecordId",param.userCourseRecordId)

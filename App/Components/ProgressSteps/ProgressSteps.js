@@ -70,7 +70,7 @@ const ProgressSteps = ({ activeStep: initialActiveStep, isComplete, topOffset, m
 
   return (
     <View style={{ flex: 1 }}>
-      <View className="flex-row items-center justify-between px-3" style={{borderBottomWidth: 0.2, marginBottom: 9}}>
+      <View className="flex-row items-center justify-between px-3" style={{borderBottomWidth: 0.2, marginBottom: 9, borderColor:"#AFAFAF"}}>
         <TouchableOpacity onPress={() => navigate.goBack()}>
           <Feather name="x" size={24} color="black" />
         </TouchableOpacity>

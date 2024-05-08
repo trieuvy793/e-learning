@@ -11,17 +11,15 @@ import { UserPointsContext } from './App/Context/UserPointsContext';
 import { createStackNavigator } from '@react-navigation/stack';
 import CourseDetailScreen from './App/Screen/CourseDetailScreen';
 import ChapterContentScreen from './App/Screen/ChapterContentScreen';
-import MyCourse from './App/Screen/MyCourse';
-import ProblemDetailScreen from './App/Components/ProblemDetailScreen/ProblemDetailScreen';
 import LeaderBoard from './App/Screen/LeaderBoard';
 import MyProjects from './App/Screen/MyProjects';
 import PaymentPolicy from './App/Screen/PaymentPolicy';
 import ProfileScreen from './App/Screen/ProfileScreen';
 import ChatGlobalScreen from './App/Screen/ChatGlobalScreen';
 import ChatGPT from './App/Components/GPT/ChatGPT';
-import ChatbotScreen from './App/Screen/SupportScreen';
 import IDEScreen from './App/Screen/IDEScreen';
 import SupportScreen from './App/Screen/SupportScreen';
+import ChangeInfo from './App/Components/Profile/ChangeInfo';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -64,7 +62,12 @@ export default function App() {
                     <Stack.Screen name='bot-screen' component={ChatGPT} />
                     <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
                     <Stack.Screen name='ide-screen' component={IDEScreen} />
+                    <Stack.Screen name='change-info' component={ChangeInfo} />
                   </Stack.Group>
+                  {/* <Stack.Group>
+                    <Stack.Screen name='CourseDetailScreen' component={CourseDetailScreen} />
+                    <Stack.Screen name='payment-policy-course' component={PaymentPolicy} />
+                  </Stack.Group> */}
                 </Stack.Navigator>
               </NavigationContainer>
             </SignedIn>

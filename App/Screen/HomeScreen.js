@@ -29,12 +29,16 @@ export default function HomeScreen() {
   }, [user])
 
   const createUser = () => {
-    if (user) {
+    if (!user) {
+      console.log("hi0"+user.fullName);
       createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
         if (resp)
           GetPoint();
       })
     }
+    // else {
+    //   getUserDetail(user.primaryEmailAddress.emailAddress);
+    // }
   }
 
   const getCourses = () => {

@@ -20,6 +20,9 @@ import ChatGPT from './App/Components/GPT/ChatGPT';
 import IDEScreen from './App/Screen/IDEScreen';
 import SupportScreen from './App/Screen/SupportScreen';
 import ChangeInfo from './App/Components/Profile/ChangeInfo';
+import ExerciseScreen from './App/Screen/ExerciseScreen';
+import { Provider } from 'react-redux';
+import store from './App/Redux/store'
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -42,39 +45,38 @@ export default function App() {
     <ClerkProvider publishableKey={"pk_test_dG9waWNhbC1jYXRmaXNoLTM1LmNsZXJrLmFjY291bnRzLmRldiQ"}>
       <UserPointsContext.Provider value={{ userPoints, setUserPoints }}>
         <CompleteChapterContext.Provider value={{ isChapterComplete, setIsChapterComplete }}>
-          <View style={styles.container}>
-            <SignedIn>
-              <NavigationContainer>
-                <Stack.Navigator screenOptions={{ headerShown: false }}>
-                  <Stack.Group>
-                    <Stack.Screen name='Home' component={TabNavigation} />
-                    <Stack.Screen name='course-detail' component={CourseDetailScreen} />
-                    <Stack.Screen name='chapter-content' component={ChapterContentScreen} />
-                  </Stack.Group>
-                  <Stack.Group>
-                    <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
-                    <Stack.Screen name='leader-board' component={LeaderBoard} />
-                    <Stack.Screen name='my-projects' component={MyProjects} />
-                    <Stack.Screen name='payment-policy' component={PaymentPolicy} />
-                  </Stack.Group>
-                  <Stack.Group>
-                    <Stack.Screen name='ChatbotScreen' component={SupportScreen} />
-                    <Stack.Screen name='bot-screen' component={ChatGPT} />
-                    <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
-                    <Stack.Screen name='ide-screen' component={IDEScreen} />
-                    <Stack.Screen name='change-info' component={ChangeInfo} />
-                  </Stack.Group>
-                  {/* <Stack.Group>
-                    <Stack.Screen name='CourseDetailScreen' component={CourseDetailScreen} />
-                    <Stack.Screen name='payment-policy-course' component={PaymentPolicy} />
-                  </Stack.Group> */}
-                </Stack.Navigator>
-              </NavigationContainer>
-            </SignedIn>
-            <SignedOut>
-              <LoginScreen />
-            </SignedOut>
-          </View>
+          <Provider store={store}>
+            <View style={styles.container}>
+              <SignedIn>
+                <NavigationContainer>
+                  <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Group>
+                      <Stack.Screen name='Home' component={TabNavigation} />
+                      <Stack.Screen name='course-detail' component={CourseDetailScreen} />
+                      <Stack.Screen name='chapter-content' component={ChapterContentScreen} />
+                      <Stack.Screen name='exercise' component={ExerciseScreen} />
+                    </Stack.Group>
+                    <Stack.Group>
+                      <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
+                      <Stack.Screen name='leader-board' component={LeaderBoard} />
+                      <Stack.Screen name='my-projects' component={MyProjects} />
+                      <Stack.Screen name='payment-policy' component={PaymentPolicy} />
+                    </Stack.Group>
+                    <Stack.Group>
+                      <Stack.Screen name='ChatbotScreen' component={SupportScreen} />
+                      <Stack.Screen name='bot-screen' component={ChatGPT} />
+                      <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
+                      <Stack.Screen name='ide-screen' component={IDEScreen} />
+                      <Stack.Screen name='change-info' component={ChangeInfo} />
+                    </Stack.Group>
+                  </Stack.Navigator>
+                </NavigationContainer>
+              </SignedIn>
+              <SignedOut>
+                <LoginScreen />
+              </SignedOut>
+            </View>
+          </Provider>
         </CompleteChapterContext.Provider>
       </UserPointsContext.Provider>
 

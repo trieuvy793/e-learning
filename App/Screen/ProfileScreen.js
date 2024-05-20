@@ -20,13 +20,14 @@ export default function ProfileScreen() {
   // const param = useRoute().params;
   const isFocused = useIsFocused();
   const [refreshing, setRefreshing] = useState(false);
+  // const [newFullName, setNewFullName] = useState();
+  const [newImageUrl, setNewImageUrl] = useState(user?.imageUrl);
 
   useEffect(() => {
     if (isFocused || refreshing) {
       GetUserDetails();
     }
   }, [isFocused, refreshing])
-
 
   const GetUserDetails = () => {
     getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
@@ -38,8 +39,6 @@ export default function ProfileScreen() {
   }
 
   const [newFullName, setNewFullName] = useState(newFullName);
-  const [newImageUrl, setNewImageUrl] = useState(user?.imageUrl);
-
 
   // useEffect(() => {
   //   // console.log(newFullName);
@@ -70,19 +69,15 @@ export default function ProfileScreen() {
           <Image source={{ uri: user?.imageUrl }} style={{ width: 100, height: 100, borderRadius: 100 }} />
           <TouchableOpacity
             onPress={() => navigation.navigate('change-info',
-              // {
-              //   user: {
-              //     fullName: newFullName,
-              //     emailAddress: user.primaryEmailAddress.emailAddress,
-              //     imageUrl: user?.imageUrl
-              //   }
-              // }
+              {
+                user: newFullName
+              }
             )}
             className="absolute bottom-0 right-40 bg-white p-1 rounded-full">
             <MaterialCommunityIcons name="lead-pencil" size={18} color="black" />
           </TouchableOpacity>
         </View>
-        <Text className="text-center text-xl mt-4" style={{ fontWeight: 'bold' }} refreshing={refreshing}>{newFullName}</Text>
+        <Text className="text-center text-xl mt-4" style={{ fontWeight: 'bold' }}>{newFullName}</Text>
         <Text className="text-center mt-2">{user?.primaryEmailAddress.emailAddress}</Text>
       </View>
       <View>

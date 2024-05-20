@@ -282,3 +282,33 @@ export const UpdateUserDetail=async(userEmail,profileImage,userName)=>{
   const result = await request(MASTER_URL, mutationQuery);
   return result;
 }
+
+export const GetAllExcercises=async()=>{
+  const query = gql`
+  query GetAllExercises {
+    exercises {
+      questions {
+        title
+        id
+        content {
+          description {
+            markdown
+          }
+          answerList {
+            answer1
+            answer2
+            answer3
+            answer4
+          }
+        }
+      }
+      id
+      name
+      level
+    }
+  }  
+  `
+
+  const result = await request(MASTER_URL, query);
+  return result;
+}

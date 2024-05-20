@@ -13,30 +13,7 @@ export default function ChangeInfo() {
   const { user } = useUser();
   const navigate = useNavigation();
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isFocused || refreshing) {
-      GetUserDetails();
-    }
-  }, [isFocused, refreshing])
-  
-
-  const GetUserDetails = () => {
-    getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
-      if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
-        setNewFullName(resp.userDetail.userName);
-      }
-    })
-  }
-
-  const [newFullName, setNewFullName] = useState(newFullName);
-  // const [newImageUrl, setNewImageUrl] = useState(user?.imageUrl);
-  const isFocused = useIsFocused();
-  const [refreshing, setRefreshing] = useState(false);
-
-  // useEffect(()=>{
-  //   console.log(param.user.emailAddress);
-  // },[param])
+  const [newFullName, setNewFullName] = useState(param?.user);
 
   const handleSaveInfo = () => {
     setLoading(true);
@@ -53,7 +30,7 @@ export default function ChangeInfo() {
 
   return (
     <View className="bg-BACKGROUND h-full pt-2">
-      <View className="flex-row justify-between border-gray-200" style={{ borderBottomWidth: 1 }}>
+      <View className="flex-row justify-between items-center border-gray-200" style={{ borderBottomWidth: 1 }}>
         <TouchableOpacity onPress={() => navigate.goBack()}>
           <Feather name="x" size={24} color="black" style={{ paddingLeft: 10 }} />
         </TouchableOpacity>
@@ -76,7 +53,6 @@ export default function ChangeInfo() {
           <TextInput 
             className="bg-white w-full p-4 rounded-xl text-lg" 
             onChangeText={(text) => setNewFullName(text)}
-            refreshing={refreshing}
             >
               {newFullName}
           </TextInput>

@@ -1,7 +1,8 @@
-import { SET_EXERCISES, SET_LEVEL } from './actions';
+import { SET_EXERCISES, SET_LEVEL, SET_PROJECT } from './actions';
 
 const initialState = {
   exercises: [],
+  project: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         level: action.payload,
+      };
+    case SET_PROJECT:
+      return {
+        ...state,
+        project: action.payload,
       };
     default:
       return state;

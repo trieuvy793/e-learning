@@ -333,51 +333,16 @@ export const CreateNewProject = async (projectName, projectSlug, description) =>
   return result;
 };
 
-// export const CreateNewProject = async (projectName, description) => {
-//   const mutationQuery = gql`
-//   mutation CreateProject($name: String!, $description: String!) {
-//     createProject(data: {name: $name, content: {create: {description: $description}}}) {
-//       name
-//       id
-//     }
-//     publishProject(where: {name: $name}, to: PUBLISHED) {
-//       name
-//       id
-//     }
-//   }
-//   `;
+export const GetProjects = async () => {
+  const query = gql`
+  query GetProject {
+    projects {
+      name
+      description
+    }
+  }
+  `
 
-//   const variables = {
-//     name: projectName,
-//     description: description,
-//   };
-
-//   try {
-//     const result = await request(MASTER_URL, mutationQuery, variables);
-//     return result;
-//   } catch (error) {
-//     console.error('Error saving project:', error);
-//     throw error;
-//   }
-// };
-
-// export const UpsertProject = async(projectName,description,title) => {
-//   const mutationQuery = gql`
-//   mutation UpsertProjects {
-//     upsertProject(
-//       upsert: {create: {name: "`+projectName+`", content: {create: {description: "`+description+`", title: "`+title+`"}}}, update: {content: {update: {data: {description: "`+description+`", title: "`+title+`"}}}, name: "`+projectName+`"}}
-//       where: {name: "`+projectName+`"}
-//     ) {
-//       id
-//       name
-//     }
-//     publishProject(where: {name: "`+projectName+`"}) {
-//       id
-//       name
-//     }
-//   }
-//   `
-
-//   const result = await request(MASTER_URL, mutationQuery);
-//   return result;
-// }
+  const result = await request(MASTER_URL, query);
+  return result;
+}

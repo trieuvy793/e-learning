@@ -1,59 +1,3 @@
-// import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-// import React, { useState } from 'react'
-// import IdeSuper from '../Components/IDE/IdeSuper'
-// import { Feather } from '@expo/vector-icons';
-// import { useNavigation } from '@react-navigation/native';
-// import { useSelector } from 'react-redux';
-// import { setProject } from '../Redux/actions';
-// import { UpsertProject } from '../Services';
-
-// export default function IDEScreen() {
-//   const [code, setCode] = useState('');
-//   const navigate = useNavigation();
-//   const project = useSelector(state => state.project);
-
-//   console.log(code);
-//   const saveProject = () => {
-//     UpsertProject()
-//   }
-
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.headerBox}>
-//         <TouchableOpacity onPress={() => navigate.goBack()}>
-//           <Feather name="x" size={24} color="white" />
-//         </TouchableOpacity>
-//         <Text style={styles.header}>IDE</Text>
-//         <TouchableOpacity>
-//           <Feather name="save" size={24} color="white" />
-//         </TouchableOpacity>
-//       </View>
-//       <IdeSuper initialValue={code} onCodeChange={setCode} />
-//     </View>
-//   )
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#F2FAFF'
-//   },
-//   headerBox: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-//     backgroundColor: '#354573',
-//     paddingHorizontal: 10
-//   },
-//   header: {
-//     textAlign: 'center',
-//     fontSize: 26,
-//     padding: 20,
-//     color: 'white'
-//   }
-// });
-
-// import các thư viện cần thiết và các hàm dịch vụ
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal, Alert } from 'react-native';
 import IdeSuper from '../Components/IDE/IdeSuper';
@@ -67,20 +11,23 @@ export default function IDEScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [fileName, setFileName] = useState('');
   const navigate = useNavigation();
-  const project = useSelector(state => state.project);
-  let projectSlug = "";
 
-  const saveProject = async() => {
+  const sanitizeInput = (input) => {
+    return input.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
+  };
+  
+  const saveProject = async () => {
     if (fileName) {
       try {
-        projectSlug = `${fileName}-slug`;
-        await CreateNewProject(fileName, projectSlug, code);
+        const sanitizedFileName = sanitizeInput(fileName);
+        const projectSlug = `${sanitizedFileName}-slug`;
+        await CreateNewProject(sanitizedFileName, projectSlug, code); 
         setModalVisible(false);
         setFileName('');
         Alert.alert('Success', 'Project saved successfully!');
       } catch (error) {
         console.error('Error saving project:', error);
-        Alert.alert('Error', 'Failed to save project. Please try again.');
+        Alert.alert('Error', 'Failed to save project: ${error.message}. Please try again.');
       }
     } else {
       Alert.alert('Validation', 'Please enter a file name');
@@ -149,49 +96,43 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 22
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#F2FAFF',
+    borderWidth:1,
+    borderColor:'#208BE8',
     borderRadius: 20,
-    padding: 35,
+    paddingHorizontal: '10%',
+    paddingVertical:20,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontSize: 20
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: 'rgb(229 231 235)',
     borderWidth: 1,
     marginBottom: 15,
-    width: '80%',
-    paddingHorizontal: 10,
+    paddingHorizontal: 60,
   },
   button: {
-    backgroundColor: '#354573',
+    backgroundColor: '#C6D6FF',
     borderRadius: 10,
     padding: 10,
-    elevation: 2,
     marginVertical: 5,
     width: '80%',
   },
   buttonClose: {
-    backgroundColor: '#999',
+    backgroundColor: 'rgb(229 231 235)',
   },
   buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: 'black',
     textAlign: 'center',
+    width:90
   },
 });

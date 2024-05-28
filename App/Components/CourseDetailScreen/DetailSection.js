@@ -112,14 +112,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth:1,
     borderColor:'#208BE8',
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 4,
-    // elevation: 5,
   },
   button: {
     borderRadius: 10,

@@ -339,10 +339,55 @@ export const GetProjects = async () => {
     projects {
       name
       description
+      projectSlug
+    }
+  }  
+  `
+
+  const result = await request(MASTER_URL, query);
+  return result;
+}
+
+export const deleteProject = async (projectSlug) => {
+  const unpublishMutation = gql`
+    mutation UnpublishProject {
+      unpublishProject(where: { projectSlug: "`+projectSlug+`" }, from: PUBLISHED) {
+        id
+        name
+        projectSlug
+      }
+    }
+  `;
+
+  const deleteMutation = gql`
+    mutation DeleteProject {
+      deleteProject(where: { projectSlug: "`+projectSlug+`" }) {
+        id
+        name
+        projectSlug
+        description
+      }
+    }
+  `;
+
+  await request(MASTER_URL, unpublishMutation);
+
+  const result = await request(MASTER_URL, deleteMutation);
+  return result;
+}
+
+export const updateProject = async (projectName, projectSlug) => {
+  const mutationQuery = gql`
+  mutation UpdateProject {
+    updateProject(data: {name: "`+projectName+`"}, where: {projectSlug: "`+projectSlug+`"}) {
+      id
+    }
+    publishProject(where: {projectSlug: "`+projectSlug+`"}) {
+      id
     }
   }
   `
 
-  const result = await request(MASTER_URL, query);
+  const result = await request(MASTER_URL, mutationQuery);
   return result;
 }

@@ -26,8 +26,8 @@ export default function IDEScreen() {
         setFileName('');
         Alert.alert('Success', 'Project saved successfully!');
       } catch (error) {
-        console.error('Error saving project:', error);
-        Alert.alert('Error', 'Failed to save project: ${error.message}. Please try again.');
+        // console.error('Error saving project:', error);
+        Alert.alert('Error', `This file name already exists. Please try another name!`);
       }
     } else {
       Alert.alert('Validation', 'Please enter a file name');
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgb(229 231 235)',
     borderWidth: 1,
     marginBottom: 15,
-    paddingHorizontal: 60,
+    paddingHorizontal: 30,
   },
   button: {
     backgroundColor: '#C6D6FF',

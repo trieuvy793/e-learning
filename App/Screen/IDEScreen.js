@@ -2,74 +2,108 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal, Alert } from 'react-native';
 import IdeSuper from '../Components/IDE/IdeSuper';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-import { CreateNewProject } from '../Services';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { CreateNewProject, updateProjectCode } from '../Services';
 
 export default function IDEScreen() {
-  const [code, setCode] = useState('');
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { description, projectName, projectSlug, isNew } = route.params;  // Extract the parameters from the route
+  const [code, setCode] = useState(description || ''); // Initialize code with description
   const [modalVisible, setModalVisible] = useState(false);
-  const [fileName, setFileName] = useState('');
-  const navigate = useNavigation();
+  const [fileName, setFileName] = useState(projectName || '');
 
   const sanitizeInput = (input) => {
     return input.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
   };
-  
+
+  const formatCodeAsHtml = (code) => {
+    const escapedCode = code
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/\n/g, '<br>');
+        // .replace(/ /g, '&nbsp;');
+    return `<pre>${escapedCode}</pre>`;
+};
+
+const formatHtmlAsCode = (code) => {
+  const escapedCode = code
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/<br>/g, '\n')
+      .replace(/&nbsp;/g, '')
+      .replace(/<pre>/g, '')
+      .replace(/<\/pre>/g, '');
+  return escapedCode;
+};
+
   const saveProject = async () => {
-    if (fileName) {
-      try {
-        const sanitizedFileName = sanitizeInput(fileName);
-        const projectSlug = `${sanitizedFileName}-slug`;
-        await CreateNewProject(sanitizedFileName, projectSlug, code); 
-        setModalVisible(false);
-        setFileName('');
-        Alert.alert('Success', 'Project saved successfully!');
-      } catch (error) {
-        // console.error('Error saving project:', error);
-        Alert.alert('Error', `This file name already exists. Please try another name!`);
+    if (isNew) {
+      if (fileName) {
+        try {
+          const sanitizedFileName = sanitizeInput(fileName);
+          const projectSlug = `${sanitizedFileName}-slug`;
+          await CreateNewProject(sanitizedFileName, projectSlug, formatCodeAsHtml(code));
+          setModalVisible(false);
+          setFileName('');
+          Alert.alert('Success', 'Project saved successfully!');
+        } catch (error) {
+          console.log(error);
+          Alert.alert('Error', `Fail to save! ${error}. Please try again!`);
+        }
+      } else {
+        Alert.alert('Validation', 'Please enter a file name');
       }
     } else {
-      Alert.alert('Validation', 'Please enter a file name');
+      try {
+        await updateProjectCode(formatCodeAsHtml(code), projectSlug);
+        Alert.alert('Success', 'Project updated successfully!');
+      } catch (error) {
+        Alert.alert('Error', 'Failed to update the project. Please try again.');
+      }
     }
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.headerBox}>
-        <TouchableOpacity onPress={() => navigate.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="x" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.header}>IDE</Text>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <TouchableOpacity onPress={() => {isNew?setModalVisible(true):saveProject()}}>
           <Feather name="save" size={24} color="white" />
         </TouchableOpacity>
       </View>
-      <IdeSuper initialValue={code} onCodeChange={setCode} />
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Enter File Name</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={setFileName}
-              value={fileName}
-              placeholder="File Name"
-            />
-            <TouchableOpacity style={styles.button} onPress={saveProject}>
-              <Text style={styles.buttonText}>Save</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(false)}>
-              <Text style={styles.buttonText}>Cancel</Text>
-            </TouchableOpacity>
+      <IdeSuper initialValue={formatHtmlAsCode(code)} onCodeChange={setCode} />
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => setModalVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Enter File Name</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={setFileName}
+                value={fileName}
+                placeholder="File Name"
+              />
+              <TouchableOpacity style={styles.button} onPress={saveProject}>
+                <Text style={styles.buttonText}>Save</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(false)}>
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
     </View>
   );
 }
@@ -101,11 +135,11 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     backgroundColor: '#F2FAFF',
-    borderWidth:1,
-    borderColor:'#208BE8',
+    borderWidth: 1,
+    borderColor: '#208BE8',
     borderRadius: 20,
     paddingHorizontal: '10%',
-    paddingVertical:20,
+    paddingVertical: 20,
     alignItems: 'center',
   },
   modalText: {
@@ -133,6 +167,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'black',
     textAlign: 'center',
-    width:90
+    width: 90
   },
 });

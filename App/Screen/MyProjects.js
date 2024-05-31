@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, Alert, TextInput, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, Alert, TextInput, ScrollView, RefreshControl, FlatList } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Feather, AntDesign, Entypo } from '@expo/vector-icons';
-import { GetProjects, deleteProject, updateProject } from '../Services';
-import IDEScreen from './IDEScreen';
+import { GetProjects, deleteProject, updateProjectName } from '../Services';
 
 export default function MyProjects() {
   const navigation = useNavigation();
@@ -24,9 +23,9 @@ export default function MyProjects() {
     GetProjects().then(resp => {
       setProjects(resp?.projects || []);
     })
-    .catch(error => {
-      console.error('Error fetching projects:', error);
-    });
+      .catch(error => {
+        console.error('Error fetching projects:', error);
+      });
   };
 
   const handleDelete = () => {
@@ -42,16 +41,16 @@ export default function MyProjects() {
       setModalVisible(false);
       getProjectName();
     })
-    .catch(error => {
-      console.error('Error deleting project:', error);
-      Alert.alert('Error', 'Failed to delete the project. Please try again.');
-    });
+      .catch(error => {
+        console.error('Error deleting project:', error);
+        Alert.alert('Error', 'Failed to delete the project. Please try again.');
+      });
   };
 
   const handleUpdate = () => {
     if (newFolderName.trim()) {
       console.log(`Updating project name to: ${newFolderName}`);
-      updateProject(newFolderName, selectedProject.projectSlug)
+      updateProjectName(newFolderName, selectedProject.projectSlug)
         .then(() => getProjectName());
       setNewFolderName('');
       setModalVisible(false);
@@ -67,6 +66,8 @@ export default function MyProjects() {
     }, 1000);
   }, []);
 
+  console.log(projects)
+
   return (
     <View className="bg-BACKGROUND h-full">
       <View className="flex-row justify-between mt-2 pb-2 border-gray-200 border-b mb-3">
@@ -74,20 +75,22 @@ export default function MyProjects() {
           <Feather name="x" size={24} color="black" style={{ paddingLeft: 12 }} />
         </TouchableOpacity>
         <Text className="text-xl">MyProjects</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('ide')}>
+        <TouchableOpacity onPress={() => navigation.navigate('ide', { description: "", isNew: true })}>
           <AntDesign name="pluscircleo" size={24} color="black" style={{ paddingRight: 12 }} />
         </TouchableOpacity>
       </View>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-        contentContainerStyle={{ padding: 5 }}>
+        contentContainerStyle={{ padding: 5 }}
+      >
         {projects.map((project, index) => (
           <View key={index} className="flex-row items-center justify-between mb-5 px-3">
             <TouchableOpacity className="flex-row items-center gap-5" onPress={() => {
               setSelectedProject(project);
-              navigation.navigate('ide', { projectName: project.name });
+              navigation.navigate('ide', { projectName: project.name, description: project.description, projectSlug: project.projectSlug, isNew: false });
             }}>
               <AntDesign name="folder1" size={30} color="black" />
               <Text className="text-[22px]">{project.name}</Text>

@@ -150,7 +150,19 @@ const IdeSuper = ({ initialValue, readOnly = false, onCodeChange }) => {
     };
 
     const handleRunCode = () => {
-        // You can add your run code logic here
+        const formattedCode = formatCodeAsHtml(code);
+        console.log(formattedCode);
+    };
+
+    const formatCodeAsHtml = (code) => {
+        const escapedCode = code
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/\n/g, ' <br> ')
+            .replace(/ /g, '&nbsp;');
+        return `<pre>${escapedCode}</pre>`;
     };
 
     const toggleKeyboard = () => {

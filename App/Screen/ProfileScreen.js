@@ -33,7 +33,7 @@ export default function ProfileScreen() {
     getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
       if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
         setNewFullName(resp.userDetail.userName);
-        console.log(resp.userDetail.userName);
+        // console.log(resp.userDetail.userName);
       }
     })
   }

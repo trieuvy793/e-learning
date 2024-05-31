@@ -336,7 +336,7 @@ export const CreateNewProject = async (projectName, projectSlug, description) =>
 export const GetProjects = async () => {
   const query = gql`
   query GetProject {
-    projects {
+    projects(first: 100) {
       name
       description
       projectSlug
@@ -376,10 +376,26 @@ export const deleteProject = async (projectSlug) => {
   return result;
 }
 
-export const updateProject = async (projectName, projectSlug) => {
+export const updateProjectName = async (projectName, projectSlug) => {
   const mutationQuery = gql`
   mutation UpdateProject {
     updateProject(data: {name: "`+projectName+`"}, where: {projectSlug: "`+projectSlug+`"}) {
+      id
+    }
+    publishProject(where: {projectSlug: "`+projectSlug+`"}) {
+      id
+    }
+  }
+  `
+
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
+}
+
+export const updateProjectCode = async (description, projectSlug) => {
+  const mutationQuery = gql`
+  mutation UpdateProject {
+    updateProject(data: {description: "`+description+`"}, where: {projectSlug: "`+projectSlug+`"}) {
       id
     }
     publishProject(where: {projectSlug: "`+projectSlug+`"}) {

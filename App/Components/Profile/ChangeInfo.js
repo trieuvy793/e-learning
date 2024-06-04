@@ -5,8 +5,6 @@ import { useClerk, useUser } from "@clerk/clerk-expo";
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { UpdateUserDetail, getUserDetail } from '../../Services';
-import { UserNameContext } from '../../Context/UserNameContext';
-import { UserImageContext } from '../../Context/UserImageContext';
 
 export default function ChangeInfo() {
   const param = useRoute().params;
@@ -20,7 +18,7 @@ export default function ChangeInfo() {
     setTimeout(() => {
       setLoading(false);
       UpdateUserInfo();
-      navigate.goBack();
+      // navigate.goBack();
     }, 2000);
   };
 

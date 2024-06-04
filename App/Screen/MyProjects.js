@@ -66,7 +66,7 @@ export default function MyProjects() {
     }, 1000);
   }, []);
 
-  console.log(projects)
+  // console.log(projects)
 
   return (
     <View className="bg-BACKGROUND h-full">

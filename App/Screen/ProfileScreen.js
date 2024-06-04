@@ -8,8 +8,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { UserImageContext } from '../Context/UserImageContext';
-import { UserNameContext } from '../Context/UserNameContext';
 import { UpdateUserDetail, getUserDetail } from '../Services';
 
 export default function ProfileScreen() {

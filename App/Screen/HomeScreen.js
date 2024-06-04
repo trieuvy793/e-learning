@@ -30,7 +30,7 @@ export default function HomeScreen() {
 
   const createUser = () => {
     if (!user) {
-      console.log("hi0"+user.fullName);
+      console.log("hi0" + user.fullName);
       createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
         if (resp)
           GetPoint();
@@ -72,7 +72,7 @@ export default function HomeScreen() {
       </View>
     );
   }
-  
+
 
   const renderAllCourse = () => (
     <View>
@@ -88,25 +88,26 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <ScrollView 
-      className="bg-BACKGROUND" 
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>
+    <View
+      className="bg-BACKGROUND"
+      >
       <View className="p-5 h-52">
         <Header input={input} point={point} setInput={setInput} />
       </View>
-        <View
-          style={{}}
-          showsVerticalScrollIndicator={false}
-          >
-          <View style={{ padding: 20 }}>
-            {renderAllCourse()}
-            <CourseProgress refreshing={refreshing} />
-            {renderCourses()}
-          </View>
+      <ScrollView
+        style={{}}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <View style={{ padding: 20 }}>
+          {renderAllCourse()}
+          <CourseProgress refreshing={refreshing} />
+          {renderCourses()}
         </View>
+      </ScrollView>
 
-    </ScrollView>
+    </View>
   )
 }

@@ -8,9 +8,9 @@ import { CreateNewProject, updateProjectCode } from '../Services';
 export default function IDEScreen() {
   const route = useRoute();
   const navigation = useNavigation();
-  const { description, projectName, projectSlug, isNew } = route.params;  // Extract the parameters from the route
-  const [code, setCode] = useState(description || ''); // Initialize code with description
-  const [modalVisible, setModalVisible] = useState(false);
+  const { description, projectName, projectSlug, isNew } = (route.params);  // Extract the parameters from the route
+  const [code, setCode] = useState(description || ''); 
+  const [modalVisible, setModalVisible] = useState(false);// Initialize code with description
   const [fileName, setFileName] = useState(projectName || '');
 
   const sanitizeInput = (input) => {

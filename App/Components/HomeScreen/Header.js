@@ -7,8 +7,6 @@ import SnowSearch from './../../../assets/images/snowsearch.png'
 import { Ionicons } from '@expo/vector-icons';
 import { UserPointsContext } from '../../Context/UserPointsContext'
 import { GetPoint } from '../../Services/getPoint';
-import { UserNameContext } from '../../Context/UserNameContext';
-import { UserImageContext } from '../../Context/UserImageContext';
 import { useIsFocused } from '@react-navigation/native';
 import { getUserDetail } from '../../Services';
 

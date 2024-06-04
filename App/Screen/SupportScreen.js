@@ -22,7 +22,7 @@ export default function SupportScreen() {
         </TouchableOpacity>
       </View>
       <View style={{ backgroundColor: 'white', height: '100%' }}>
-        <TouchableOpacity onPress={() => navigate.navigate('ide-screen')} style={styles.boxIDE}>
+        <TouchableOpacity onPress={() => navigate.navigate('ide-screen', { description: "", isNew: true })} style={styles.boxIDE}>
           <Image source={IDE} style={styles.imageIDE} />
           <Text style={styles.textIDE}>IDE</Text>
         </TouchableOpacity>

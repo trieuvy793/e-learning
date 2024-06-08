@@ -120,15 +120,22 @@
 
 // export default IdeSuper;
 
+
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Keyboard, KeyboardAvoidingView, Platform, useWindowDimensions } from 'react-native';
 import CodeEditor, { CodeEditorSyntaxStyles } from '@rivascva/react-native-code-editor';
 import { MaterialCommunityIcons, Ionicons, AntDesign, Zocial } from '@expo/vector-icons';
+import RenderHtml from 'react-native-render-html';
+import executePythonCode from '../../Services/apiRequests';
+import { encode as base64Encode, decode as base64Decode } from 'base-64';
 
 const IdeSuper = ({ initialValue, readOnly = false, onCodeChange }) => {
     const [code, setCode] = useState(initialValue);
     const [keyboardOpen, setKeyboardOpen] = useState(false);
     const codeRef = useRef(null);
+    const [response, setResponse] = useState(null);
+    const { width } = useWindowDimensions();
+    const lang = 'python3';
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
@@ -149,9 +156,16 @@ const IdeSuper = ({ initialValue, readOnly = false, onCodeChange }) => {
         onCodeChange(newCode);
     };
 
-    const handleRunCode = () => {
-        const formattedCode = formatCodeAsHtml(code);
-        console.log(formattedCode);
+    const handleRunCode = async () => {
+        try {
+            const dataInput = "";
+            const responsePromise = await executePythonCode(lang, code, dataInput);
+            responsePromise.stdout = base64Decode(responsePromise.stdout);
+            setResponse(responsePromise);
+            Keyboard.dismiss();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const formatCodeAsHtml = (code) => {
@@ -200,6 +214,18 @@ const IdeSuper = ({ initialValue, readOnly = false, onCodeChange }) => {
                     </TouchableOpacity>
                 </View>
             )}
+            {!keyboardOpen && code !== "" && (
+                <View style={styles.resultContainer}>
+                    <RenderHtml
+                      contentWidth={width}
+                      source={{
+                        html: `
+                        <pre style="font-family: 'Arial', sans-serif; color: white;">${response && response.stdout ? response.stdout.replace(/</g, "&lt;").replace(/\n/g, '<br>') : ''}</pre>`
+                      }}
+                      ignoredDomTags={['font', 'int']}
+                    />
+                </View>
+            )}
         </KeyboardAvoidingView>
     );
 };
@@ -225,8 +251,15 @@ const styles = StyleSheet.create({
         inputLineHeight: 12,
         highlighterLineHeight: 12,
         padding: 16,
-        minWidth: '100%'
+        minWidth: '100%',
     },
+    resultContainer: {
+        height: "33.33%",
+        backgroundColor:'black'
+    },
+    resultText: {
+        color:'white'
+    }
 });
 
 export default IdeSuper;

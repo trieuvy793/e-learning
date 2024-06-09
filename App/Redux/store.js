@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
+import { configureStore, createStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers/exerciseProject';
+import myReducer from './reducers';
 
-const store = configureStore({
+
+export const store = configureStore({
   reducer: rootReducer,
 });
 
-export default store;
+export const Store = createStore(myReducer);

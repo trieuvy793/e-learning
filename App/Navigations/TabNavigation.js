@@ -12,8 +12,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import SupportScreen from '../Screen/SupportScreen';
 import ProblemDetailScreen from '../Components/ProblemDetailScreen/ProblemDetailScreen';
 import { createStackNavigator } from '@react-navigation/stack';
-import MyProjects from '../Screen/MyProjects';
-import PaymentPolicy from '../Screen/PaymentPolicy';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,17 +29,12 @@ const MyCourseStackNavigator = () => (
 //   </Stack.Navigator>
 // );
 
-// const ProfileStackNavigator = () => (
-//   <Stack.Navigator screenOptions={{ headerShown: false }}>
-//     <Stack.Screen name="Profile" component={ProfileScreen} />
-//     <Stack.Screen name='leader-board' component={LeaderBoard} />
-//     <Stack.Screen name='my-projects' component={MyProjects} />
-//     <Stack.Screen name='payment-policy' component={PaymentPolicy} />
-//   </Stack.Navigator>
-// );
-
 
 export default function TabNavigation() {
+
+  const user2 = useSelector((state)=> state.user);
+  console.log("loggeg:", user2)
+
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
@@ -60,13 +54,6 @@ export default function TabNavigation() {
           )
         }}
       />
-      {/* <Tab.Screen name='leader-board' component={LeaderBoard}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="chart" size={22} color={color} />
-          )
-        }}
-      /> */}
       <Tab.Screen name='Support' component={SupportScreen}
         options={{
           tabBarIcon: ({ color, size }) => (<Ionicons name="chatbubble-ellipses-outline" size={22} color={color} />

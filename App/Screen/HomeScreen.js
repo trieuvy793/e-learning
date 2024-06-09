@@ -11,6 +11,7 @@ import CourseProgress from '../Components/HomeScreen/CourseProgress.js'
 import AllCourseList from '../Components/HomeScreen/AllCourseList.js'
 import { getAllCourseList } from './../Services'
 import { useIsFocused } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 export default function HomeScreen() {
 
@@ -30,7 +31,6 @@ export default function HomeScreen() {
 
   const createUser = () => {
     if (!user) {
-      console.log("hi0" + user.fullName);
       createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
         if (resp)
           GetPoint();
@@ -60,6 +60,9 @@ export default function HomeScreen() {
     coursesByLevel[course.level].push(course);
   });
 
+  // const user2 = useSelector((state)=> state.user);
+  // console.log("loggeg:", user2)
+
   const renderCourses = () => {
     const levels = Object.keys(coursesByLevel);
     return (
@@ -87,6 +90,7 @@ export default function HomeScreen() {
     }, 1000);
   }, []);
 
+  
   return (
     <View
       className="bg-BACKGROUND"
@@ -95,7 +99,7 @@ export default function HomeScreen() {
         <Header input={input} point={point} setInput={setInput} />
       </View>
       <ScrollView
-        style={{}}
+        style={{marginBottom:200}}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

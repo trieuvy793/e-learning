@@ -1,4 +1,4 @@
-import { SET_EXERCISES, SET_LEVEL, SET_PROJECT } from './actions';
+import { SET_EXERCISES, SET_LEVEL, SET_PROJECT } from '../actions';
 
 const initialState = {
   exercises: [],

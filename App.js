@@ -22,7 +22,10 @@ import SupportScreen from './App/Screen/SupportScreen';
 import ChangeInfo from './App/Components/Profile/ChangeInfo';
 import ExerciseScreen from './App/Screen/ExerciseScreen';
 import { Provider } from 'react-redux';
-import store from './App/Redux/store'
+import {Store, store} from './App/Redux/store'
+import SinginScreen from './App/Screen/SigninScreen';
+import CreateAccount from './App/Screen/CreateAccount';
+import SplashScreen from './App/Screen/SplashScreen';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -74,7 +77,19 @@ export default function App() {
                 </NavigationContainer>
               </SignedIn>
               <SignedOut>
-                <LoginScreen />
+                <NavigationContainer>
+                  <Provider store={Store}>
+                    <Stack.Navigator screenOptions={{ headerShown: false }}>
+                      <Stack.Group>
+                        {/* <Stack.Screen name='login-screen' component={LoginScreen} /> */}
+                        <Stack.Screen name='splash' component={SplashScreen} />
+                        <Stack.Screen name='sign-in' component={SinginScreen} />
+                        <Stack.Screen name='create-account' component={CreateAccount} />
+                        <Stack.Screen name='home-screen' component={TabNavigation} />
+                      </Stack.Group>
+                    </Stack.Navigator>
+                  </Provider>
+                </NavigationContainer>
               </SignedOut>
             </View>
           </Provider>

@@ -8,9 +8,10 @@ module.exports = {
       colors: {
         'PRIMARY': '#354573', 
         'LIGHT-PRIMARY': '#E9EFFF',
-        'LIGHT-GREEN': '#F2FAF7', 
         'SECONDARY': '#6F7597',
         'GREEN': '#32C48D',
+        'LIGHT-GREEN': '#F2FAF7', 
+        'SECONDARY-GREEN': '#00C6C0',
         'RED': '#FF5F54',
         'BLUE': '#208BE8',
         'BROWN': '#580600',

@@ -9,12 +9,16 @@ import { UserPointsContext } from '../../Context/UserPointsContext'
 import { GetPoint } from '../../Services/getPoint';
 import { useIsFocused } from '@react-navigation/native';
 import { getUserDetail } from '../../Services';
+import { doc, getDoc } from 'firebase/firestore'
+import { useDispatch } from 'react-redux'
+import { SET_USER } from '../../Redux/actions'
 
 export default function Header({ input, point, setInput }) {
   const { isLoaded, isSignedIn, user } = useUser();
 
   const isFocused = useIsFocused();
   const [refreshing, setRefreshing] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isFocused || refreshing) {
@@ -22,11 +26,32 @@ export default function Header({ input, point, setInput }) {
     }
   }, [isFocused, refreshing])
 
-  const GetUserDetails = () => {
-    getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
-      if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
-        setNewFullName(resp.userDetail.userName);
-        // console.log(resp.userDetail.userName);
+  // const GetUserDetails = () => {
+  //   getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
+  //     if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
+  //       setNewFullName(resp.userDetail.userName);
+  //       // console.log(resp.userDetail.userName);
+  //     }
+  //   })
+  // }
+
+  const GetUserDetails = async() => {
+    firebaseAuth.onAuthStateChanged((userCred) => {
+      if(userCred?.uid) {
+        getDoc(doc(firestoreDB, 'users', userCred?.uid)).then((docSnap) => {
+          if(docSnap.exists()) {
+            // console.log("user data:", docSnap.data())
+            getUserDetail(userCred?.uid).then(resp => {
+              
+                setNewFullName(resp.userDetail.userName);
+                // console.log(resp.userDetail.userName);
+              
+            })
+            dispatch(SET_USER(docSnap.data()))
+          } 
+        })
+      } else {
+        console.log("error+error");
       }
     })
   }

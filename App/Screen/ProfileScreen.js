@@ -14,27 +14,24 @@ export default function ProfileScreen() {
   const { signOut } = useClerk();
   const { user } = useUser();
   const navigation = useNavigation();
-  // const newFullName = useContext(UserNameContext);
-  // const param = useRoute().params;
   const isFocused = useIsFocused();
   const [refreshing, setRefreshing] = useState(false);
-  // const [newFullName, setNewFullName] = useState();
   const [newImageUrl, setNewImageUrl] = useState(user?.imageUrl);
 
-  useEffect(() => {
-    if (isFocused || refreshing) {
-      GetUserDetails();
-    }
-  }, [isFocused, refreshing])
+  // useEffect(() => {
+  //   if (isFocused || refreshing) {
+  //     GetUserDetails();
+  //   }
+  // }, [isFocused, refreshing])
 
-  const GetUserDetails = () => {
-    getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
-      if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
-        setNewFullName(resp.userDetail.userName);
-        // console.log(resp.userDetail.userName);
-      }
-    })
-  }
+  // const GetUserDetails = () => {
+  //   getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
+  //     if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
+  //       setNewFullName(resp.userDetail.userName);
+  //       // console.log(resp.userDetail.userName);
+  //     }
+  //   })
+  // }
 
   const [newFullName, setNewFullName] = useState(newFullName);
 

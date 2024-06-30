@@ -1,7 +1,6 @@
 import { View, Text, Image, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Snow from '../Components/Animated/Snow'
-import snowMan from './../../assets/images/snowman.png'
 import UserInput from '../Components/InputField/UserInput'
 import { useNavigation } from '@react-navigation/native'
 // import SinginScreen from './SinginScreen'
@@ -76,7 +75,7 @@ export default function CreateAccount() {
             style={{width:screenWidth, height:screenHeight}}>
               {avatars?.map((item)=> (
                 <TouchableOpacity onPress={() => handleAvatar(item)} key={item._id} className="w-20 m-3 h-20 p-1 rounded-full border-2 border-SECONDARY-GREEN relative">
-                  <Image source={item?.image.asset.url} className="h-full w-full" resizeMode='contain'/>
+                  <Image source={{uri: item?.image.asset.url}} className="h-full w-full" resizeMode='contain'/>
                 </TouchableOpacity>
               ))}
             </BlurView>
@@ -88,7 +87,7 @@ export default function CreateAccount() {
       <View className="bg-PRIMARY w-full h-full absolute top-1/4 rounded-full">
         <View className="w-full flex items-center justify-center relative top-5">
           <TouchableOpacity onPress={() => setIsAvatarMenu(true)} className="w-20 h-20 p-1 rounded-full border-2 border-SECONDARY-GREEN">
-            <Image source={avatar} className="w-full h-full" resizeMode='contain'/>
+            <Image source={{uri: avatar}} className="w-full h-full" resizeMode='contain'/>
             <View className="w-6 h-6 bg-SECONDARY-GREEN rounded-full absolute top-0 right-0 flex items-center justify-center">
             <MaterialIcons name="edit" size={18} color="white" />
             </View>

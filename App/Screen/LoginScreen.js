@@ -10,7 +10,7 @@ import snowMan from './../../assets/images/snowman.png'
 import google from './../../assets/images/google.webp'
 import Snow from '../Components/Animated/Snow'
 import { useWarmUpBrowser } from '../../hooks/useWarmUpBrowser'
-import { useOAuth } from "@clerk/clerk-expo";
+// import { useOAuth } from "@clerk/clerk-expo";
 
 WebBrowser.maybeCompleteAuthSession();
 export default function LoginScreen() {

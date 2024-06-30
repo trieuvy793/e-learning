@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, RefreshControl } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { useClerk, useUser } from "@clerk/clerk-expo";
+// import { useClerk, useUser } from "@clerk/clerk-expo";
 import Colors from '../../assets/colors/Colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -11,7 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { UpdateUserDetail, getUserDetail } from '../Services';
 
 export default function ProfileScreen() {
-  const { signOut } = useClerk();
+  // const { signOut } = useClerk();
   const { user } = useUser();
   const navigation = useNavigation();
   const isFocused = useIsFocused();

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useAuth, useUser } from '@clerk/clerk-expo'
+// import { useAuth, useUser } from '@clerk/clerk-expo'
 import { UserPointsContext } from '../Context/UserPointsContext.js'
 import { getUserDetail } from './index.js';
 

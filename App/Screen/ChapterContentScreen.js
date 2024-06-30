@@ -4,7 +4,7 @@ import Content from '../Components/ChapterContent/Content'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { IsChapterFinished, getUserEnrolledCourse, isCompletedChapter, markChapterCompleted } from '../Services';
 import { CompleteChapterContext } from '../Context/CompleteChapterContext';
-import { useUser } from '@clerk/clerk-expo'
+// import { useUser } from '@clerk/clerk-expo'
 import { UserPointsContext } from '../Context/UserPointsContext';
 
 export default function ChapterContentScreen() {

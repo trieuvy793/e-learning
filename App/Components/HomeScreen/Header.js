@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { useUser } from '@clerk/clerk-expo'
+// import { useUser } from '@clerk/clerk-expo'
 import Colors from '../../../assets/colors/Colors';
 import Coin from './../../../assets/images/coin.png';
 import SnowSearch from './../../../assets/images/snowsearch.png'

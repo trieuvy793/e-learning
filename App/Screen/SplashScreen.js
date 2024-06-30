@@ -26,7 +26,7 @@ export default function SplashScreen() {
           } 
         }).then(() => {
           setTimeout(() => {
-            navigation.replace("home-screen")
+            navigation.replace("chat-list")
           }, 2000);
         })
       } else {

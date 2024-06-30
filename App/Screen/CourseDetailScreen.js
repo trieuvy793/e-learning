@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import DetailSection from '../Components/CourseDetailScreen/DetailSection';
 import ChapterSection from '../Components/CourseDetailScreen/ChapterSection';
 import { enrollCourse, getUserEnrolledCourse } from '../Services';
-import { useUser } from '@clerk/clerk-expo';
+// import { useUser } from '@clerk/clerk-expo';
 import Toast, { BaseToast } from 'react-native-toast-message';
 import Colors from '../../assets/colors/Colors';
 import { CompleteChapterContext } from '../Context/CompleteChapterContext';

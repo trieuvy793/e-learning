@@ -1,19 +1,9 @@
-import Cat from './../../assets/images/cat.png';
-import Butterfly from './../../assets/images/butterfly.png';
-import Deer from './../../assets/images/deer.png';
-import Jaguar from './../../assets/images/jaguar.png';
-import Macaw from './../../assets/images/macaw.png';
-import Panda from './../../assets/images/panda-bear.png';
-import Shark from './../../assets/images/shark.png';
-import Turtle from './../../assets/images/turtle.png';
-import Rabbit from './../../assets/images/rabbit.png';
-
 export const avatars = [
   {
     _id: "ava1",
     image: {
       asset: {
-        url: Cat
+        url: "https://cdn-icons-png.flaticon.com/128/4322/4322991.png"
       }
     },
     title: "avatar1"
@@ -22,7 +12,7 @@ export const avatars = [
     _id: "ava2",
     image: {
       asset: {
-        url: Butterfly
+        url: "https://cdn-icons-png.flaticon.com/128/10564/10564814.png"
       }
     },
     title: "avatar2"
@@ -31,7 +21,7 @@ export const avatars = [
     _id: "ava3",
     image: {
       asset: {
-        url: Deer
+        url: "https://cdn-icons-png.flaticon.com/128/3940/3940402.png"
       }
     },
     title: "avatar3"
@@ -40,7 +30,7 @@ export const avatars = [
     _id: "ava4",
     image: {
       asset: {
-        url: Jaguar
+        url: "https://cdn-icons-png.flaticon.com/128/1326/1326418.png"
       }
     },
     title: "avatar4"
@@ -49,7 +39,7 @@ export const avatars = [
     _id: "ava5",
     image: {
       asset: {
-        url: Macaw
+        url: "https://cdn-icons-png.flaticon.com/128/1326/1326378.png"
       }
     },
     title: "avatar5"
@@ -58,7 +48,7 @@ export const avatars = [
     _id: "ava6",
     image: {
       asset: {
-        url: Panda
+        url: "https://cdn-icons-png.flaticon.com/128/2319/2319633.png"
       }
     },
     title: "avatar6"
@@ -67,7 +57,7 @@ export const avatars = [
     _id: "ava7",
     image: {
       asset: {
-        url: Shark
+        url: "https://cdn-icons-png.flaticon.com/128/3940/3940410.png"
       }
     },
     title: "avatar7"
@@ -76,7 +66,7 @@ export const avatars = [
     _id: "ava8",
     image: {
       asset: {
-        url: Turtle
+        url: "https://cdn-icons-png.flaticon.com/128/3940/3940434.png"
       }
     },
     title: "avatar8"
@@ -85,9 +75,90 @@ export const avatars = [
     _id: "ava9",
     image: {
       asset: {
-        url: Rabbit
+        url: "https://cdn-icons-png.flaticon.com/128/3940/3940432.png"
       }
     },
     title: "avatar9"
+  },
+  {
+    _id: "ava10",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/1326/1326384.png"
+      }
+    },
+    title: "avatar10"
+  },
+  {
+    _id: "ava11",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/3500/3500458.png"
+      }
+    },
+    title: "avatar11"
+  },
+  {
+    _id: "ava12",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/3500/3500655.png"
+      }
+    },
+    title: "avatar12"
+  },
+  {
+    _id: "ava13",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/4582/4582795.png"
+      }
+    },
+    title: "avatar13"
+  },
+  {
+    _id: "ava14",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/4582/4582782.png"
+      }
+    },
+    title: "avatar14"
+  },
+  {
+    _id: "ava15",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/1326/1326387.png"
+      }
+    },
+    title: "avatar15"
+  },
+  {
+    _id: "ava16",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/3309/3309246.png"
+      }
+    },
+    title: "avatar16"
+  },
+  {
+    _id: "ava17",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/1604/1604435.png"
+      }
+    },
+    title: "avatar17"
+  },
+  {
+    _id: "ava18",
+    image: {
+      asset: {
+        url: "https://cdn-icons-png.flaticon.com/128/1499/1499238.png"
+      }
+    },
+    title: "avatar18"
   },
 ]

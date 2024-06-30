@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ActivityIndicator, TextInput } from 'react-native';
 import { useNavigation, useRoute, useIsFocused } from '@react-navigation/native';
-import { useClerk, useUser } from "@clerk/clerk-expo";
+// import { useClerk, useUser } from "@clerk/clerk-expo";
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { UpdateUserDetail, getUserDetail } from '../../Services';

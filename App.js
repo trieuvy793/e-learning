@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { LogBox, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react'
 import { useFonts } from 'expo-font';
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
+// import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import LoginScreen from './App/Screen/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './App/Navigations/TabNavigation';
@@ -26,6 +26,9 @@ import {Store, store} from './App/Redux/store'
 import SinginScreen from './App/Screen/SigninScreen';
 import CreateAccount from './App/Screen/CreateAccount';
 import SplashScreen from './App/Screen/SplashScreen';
+import ChatList from './App/Screen/ChatList';
+import AddToChatScreen from './App/Screen/AddToChatScreen';
+import ChatRoom from './App/Screen/ChatRoom';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -45,12 +48,12 @@ export default function App() {
   const [userPoints, setUserPoints] = useState();
   const [isChapterComplete, setIsChapterComplete] = useState(false);
   return (
-    <ClerkProvider publishableKey={"pk_test_dG9waWNhbC1jYXRmaXNoLTM1LmNsZXJrLmFjY291bnRzLmRldiQ"}>
+    // <ClerkProvider publishableKey={"pk_test_dG9waWNhbC1jYXRmaXNoLTM1LmNsZXJrLmFjY291bnRzLmRldiQ"}>
       <UserPointsContext.Provider value={{ userPoints, setUserPoints }}>
         <CompleteChapterContext.Provider value={{ isChapterComplete, setIsChapterComplete }}>
           <Provider store={store}>
             <View style={styles.container}>
-              <SignedIn>
+              {/* <SignedIn> */}
                 <NavigationContainer>
                   <Stack.Navigator screenOptions={{ headerShown: false }}>
                     <Stack.Group>
@@ -75,28 +78,32 @@ export default function App() {
                     </Stack.Group>
                   </Stack.Navigator>
                 </NavigationContainer>
-              </SignedIn>
-              <SignedOut>
+              {/* </SignedIn> */}
+              {/* <SignedOut>
+              <Stack.Screen name='login-screen' component={LoginScreen} />
                 <NavigationContainer>
                   <Provider store={Store}>
                     <Stack.Navigator screenOptions={{ headerShown: false }}>
                       <Stack.Group>
-                        {/* <Stack.Screen name='login-screen' component={LoginScreen} /> */}
+                        <Stack.Screen name='login-screen' component={LoginScreen} />
                         <Stack.Screen name='splash' component={SplashScreen} />
                         <Stack.Screen name='sign-in' component={SinginScreen} />
                         <Stack.Screen name='create-account' component={CreateAccount} />
                         <Stack.Screen name='home-screen' component={TabNavigation} />
+                        <Stack.Screen name='chat-list' component={ChatList}/>
+                        <Stack.Screen name='add-chat' component={AddToChatScreen}/>
+                        <Stack.Screen name='chat-room' component={ChatRoom}/>
                       </Stack.Group>
                     </Stack.Navigator>
                   </Provider>
                 </NavigationContainer>
-              </SignedOut>
+              </SignedOut> */}
             </View>
           </Provider>
         </CompleteChapterContext.Provider>
       </UserPointsContext.Provider>
 
-    </ClerkProvider>
+    // </ClerkProvider>
   );
 }
 

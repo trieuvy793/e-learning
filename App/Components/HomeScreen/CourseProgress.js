@@ -2,7 +2,7 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import SubHeading from '../SubHeading'
 import { GetAllProgressCourse } from '../../Services'
-import { useUser } from '@clerk/clerk-expo'
+// import { useUser } from '@clerk/clerk-expo'
 import CourseItem from './CourseItem'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 

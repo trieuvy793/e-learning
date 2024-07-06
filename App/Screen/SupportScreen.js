@@ -16,7 +16,7 @@ export default function SupportScreen() {
           <Image source={Bot} style={styles.image} />
           <Text style={styles.textBot}>Chat with AI assistant</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigate.navigate('sign-in')} style={styles.boxBot}>
+        <TouchableOpacity onPress={() => navigate.navigate('global-screen')} style={styles.boxBot}>
           <Image source={Global} style={styles.image} />
           <Text style={styles.textGlobal}>Chat global</Text>
         </TouchableOpacity>

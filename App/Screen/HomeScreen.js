@@ -19,14 +19,15 @@ export default function HomeScreen() {
   const [input, setInput] = useState("");
   const isFocused = useIsFocused();
   const [courseList, setCourseList] = useState([]);
+  const [userType, setUserType] = useState([]);
   const coursesByLevel = {};
   const [refreshing, setRefreshing] = useState(false);
   const point = GetPoint();
-  console.log(point)
 
   const getCourses = () => {
-    getAllCourseList().then(resp => {
+    getAllCourseList(user.primaryEmailAddress.emailAddress).then(resp => {
       setCourseList(resp?.courses);
+      setUserType(resp.userDetail);
     })
   }
 
@@ -35,6 +36,7 @@ export default function HomeScreen() {
       getCourses();
     }
   }, [isFocused, refreshing])
+
 
   courseList.forEach(course => {
     if (!coursesByLevel[course.level]) {
@@ -49,7 +51,7 @@ export default function HomeScreen() {
       <View>
         {levels.map(level => (
           <View key={level}>
-            <CourseList level={level} data={coursesByLevel[level]} refreshing={refreshing} />
+            <CourseList userType={userType} level={level} data={coursesByLevel[level]} refreshing={refreshing} />
           </View>
         ))}
       </View>

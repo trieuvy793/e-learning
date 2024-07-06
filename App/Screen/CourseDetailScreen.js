@@ -10,6 +10,7 @@ import { useUser } from '@clerk/clerk-expo';
 import Toast, { BaseToast } from 'react-native-toast-message';
 import Colors from '../../assets/colors/Colors';
 import { CompleteChapterContext } from '../Context/CompleteChapterContext';
+import { getUserDetail } from './../Services';
 
 export default function CourseDetailScreen() {
   const navigate = useNavigation();
@@ -29,6 +30,7 @@ export default function CourseDetailScreen() {
   useEffect(() => {
     isChapterComplete && GetUserEnrolledCourse();
   }, [isChapterComplete])
+  
 
   const UserEnrolledCourse = () => {
     enrollCourse(params.course.id, user.primaryEmailAddress.emailAddress).then(resp => {
@@ -57,7 +59,7 @@ export default function CourseDetailScreen() {
         <AntDesign name="left" size={24} color="#F2FAFF" />
       </TouchableOpacity>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <DetailSection course={params.course} description={{ showDescription, setShowDescription }} userEnrolledCourse={userEnrolledCourse}
+        <DetailSection userType={params.userType} course={params.course} description={{ showDescription, setShowDescription }} userEnrolledCourse={userEnrolledCourse}
           enrollCourse={() => UserEnrolledCourse()} />
         <ChapterSection chapterList={params.course.chapters}
           userEnrolledCourse={userEnrolledCourse} />

@@ -6,7 +6,7 @@ import Colors from '../../../assets/colors/Colors';
 import CourseItem from './CourseItem';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
-export default function AllCourseList({ data, input, setInput }) {
+export default function AllCourseList({userType, data, input }) {
   let count = 0;
   const navigation = useNavigation();
   // console.log(data);
@@ -32,7 +32,7 @@ export default function AllCourseList({ data, input, setInput }) {
           input === ""
             ? ""
             : item.name.toLowerCase().includes(input.toLowerCase())
-              ? <TouchableOpacity onPress={() => navigation.navigate('course-detail', { course: item })}>
+              ? <TouchableOpacity onPress={() => navigation.navigate('course-detail', { userType: userType, course: item })}>
                 <CourseItem item={item} />
               </TouchableOpacity> : setCount()
         )}

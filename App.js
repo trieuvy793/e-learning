@@ -22,7 +22,14 @@ import SupportScreen from './App/Screen/SupportScreen';
 import ChangeInfo from './App/Components/Profile/ChangeInfo';
 import ExerciseScreen from './App/Screen/ExerciseScreen';
 import { Provider } from 'react-redux';
-import store from './App/Redux/store';
+import {Store, store} from './App/Redux/store'
+import SinginScreen from './App/Screen/SigninScreen';
+import CreateAccount from './App/Screen/CreateAccount';
+import SplashScreen from './App/Screen/SplashScreen';
+import ChatList from './App/Screen/ChatList';
+import AddToChatScreen from './App/Screen/AddToChatScreen';
+import ChatRoom from './App/Screen/ChatRoom';
+import vnpay from './App/Screen/VNPAY';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -62,12 +69,16 @@ export default function App() {
                       <Stack.Screen name='leader-board' component={LeaderBoard} />
                       <Stack.Screen name='my-projects' component={MyProjects} />
                       <Stack.Screen name='payment-policy' component={PaymentPolicy} />
+                      <Stack.Screen name='vnpay' component={vnpay} />
                       <Stack.Screen name='ide' component={IDEScreen} />
                     </Stack.Group>
                     <Stack.Group>
                       <Stack.Screen name='ChatbotScreen' component={SupportScreen} />
                       <Stack.Screen name='bot-screen' component={ChatGPT} />
                       <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
+                      <Stack.Screen name='splash' component={SplashScreen} />
+                        <Stack.Screen name='sign-in' component={SinginScreen} />
+                        <Stack.Screen name='create-account' component={CreateAccount} />
                       <Stack.Screen name='ide-screen' component={IDEScreen} />
                       <Stack.Screen name='change-info' component={ChangeInfo} />
                     </Stack.Group>
@@ -75,7 +86,7 @@ export default function App() {
                 </NavigationContainer>
               </SignedIn>
               <SignedOut>
-                <LoginScreen />
+                <LoginScreen/>
               </SignedOut>
             </View>
           </Provider>

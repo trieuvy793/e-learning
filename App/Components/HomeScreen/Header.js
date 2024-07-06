@@ -16,6 +16,7 @@ export default function Header({ input, point, setInput }) {
 
   const isFocused = useIsFocused();
   const [refreshing, setRefreshing] = useState(false);
+  const [userType, setUserType] = useState("Basic");
 
   useEffect(() => {
     user && createUser();
@@ -26,10 +27,9 @@ export default function Header({ input, point, setInput }) {
       createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
         if (resp) {
           getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
-            console.log(resp)
             if (user.primaryEmailAddress.emailAddress == resp.userDetail.email) {
               setNewFullName(resp.userDetail.userName);
-              console.log(resp.userDetail.userName);
+              setUserType(resp.userDetail.userType)
             }
           })
         }
@@ -46,7 +46,17 @@ export default function Header({ input, point, setInput }) {
             className="h-12 w-12 rounded-full" />
           <View>
             <Text className="text-xs">Welcome Back!</Text>
-            <Text className="text-xl" refreshing={refreshing}>{newFullName}</Text>
+            {/* <Text className="text-xl" refreshing={refreshing}>{newFullName}</Text> */}
+            <Text
+                className="text-xl"
+                style={[
+                  styles.text,
+                  userType !== 'Basic' && styles.highlightedText
+                ]}
+                refreshing={refreshing}
+              >
+                {newFullName}
+          </Text>
           </View>
         </View>
         <View className="flex flex-row items-center gap-3">
@@ -70,3 +80,12 @@ export default function Header({ input, point, setInput }) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24, // Equivalent to text-xl
+  },
+  highlightedText: {
+    color: '#FF5F54',
+  },
+});

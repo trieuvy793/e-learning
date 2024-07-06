@@ -10,6 +10,8 @@ import UnlockColor from "./../../assets/images/unlock-color.png";
 import { AntDesign } from '@expo/vector-icons';
 
 export default function PaymentPolicy() {
+  const priceMonth = 20000;
+  const priceYear = 100000;
   const navigate = useNavigation();
   const data = [
     {id:1, title: 'Unlock full access to the library of 100+ code example', illustrate: FullAccess},
@@ -61,11 +63,17 @@ export default function PaymentPolicy() {
       </View>
 
       <View className="flex-row justify-evenly mx-14 mt-8 mb-8">
-        <TouchableOpacity className="py-4 w-24 border border-blue-400 rounded-lg">
-          <Text className="text-center">$1.99/ month</Text>
+        <TouchableOpacity onPress={() => navigate.navigate('vnpay', {
+            type: "Month",
+            price: priceMonth
+        })} className="py-4 w-24 border border-blue-400 rounded-lg">
+          <Text className="text-center">{priceMonth} VND/ month</Text>
         </TouchableOpacity>
-        <TouchableOpacity className="py-4 w-24 border border-blue-400 rounded-lg">
-          <Text className="text-center">$20/ year</Text>
+        <TouchableOpacity onPress={() => navigate.navigate('vnpay', {
+            type: "Year",
+            price: priceYear
+        })} className="py-4 w-24 border border-blue-400 rounded-lg">
+          <Text className="text-center">{priceYear} VND/ year</Text>
         </TouchableOpacity>
       </View>
 

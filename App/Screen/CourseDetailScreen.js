@@ -60,7 +60,8 @@ export default function CourseDetailScreen() {
         <DetailSection course={params.course} description={{ showDescription, setShowDescription }} userEnrolledCourse={userEnrolledCourse}
           enrollCourse={() => UserEnrolledCourse()} />
         <ChapterSection chapterList={params.course.chapters}
-          userEnrolledCourse={userEnrolledCourse} />
+          userEnrolledCourse={userEnrolledCourse} 
+          exercises={params.course.exercises}/>
       </ScrollView>
     </View>
 

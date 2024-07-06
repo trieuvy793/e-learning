@@ -23,6 +23,7 @@ import ChangeInfo from './App/Components/Profile/ChangeInfo';
 import ExerciseScreen from './App/Screen/ExerciseScreen';
 import { Provider } from 'react-redux';
 import store from './App/Redux/store';
+import ExerciseContentScreen from './App/Screen/ExerciseContentScreen';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -56,6 +57,7 @@ export default function App() {
                       <Stack.Screen name='course-detail' component={CourseDetailScreen} />
                       <Stack.Screen name='chapter-content' component={ChapterContentScreen} />
                       <Stack.Screen name='exercise' component={ExerciseScreen} />
+                      <Stack.Screen name='exercise-content' component={ExerciseContentScreen}/>
                     </Stack.Group>
                     <Stack.Group>
                       <Stack.Screen name='ProfileScreen' component={ProfileScreen} />

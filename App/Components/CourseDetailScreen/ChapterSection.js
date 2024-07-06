@@ -6,8 +6,7 @@ import Colors from '../../../assets/colors/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { CompleteChapterContext } from '../../Context/CompleteChapterContext';
 
-export default function ChapterSection({ chapterList, userEnrolledCourse, chapter }) {
-
+export default function ChapterSection({ chapterList, userEnrolledCourse, exercises }) {
   const { isChapterComplete, setIsChapterComplete } = useContext(CompleteChapterContext);
   const navigate = useNavigation();
   let completedChapter = userEnrolledCourse[0]?.completedChapter?.length;
@@ -87,7 +86,7 @@ export default function ChapterSection({ chapterList, userEnrolledCourse, chapte
       <View>
         {chapterList.length == completedChapter ?
           <TouchableOpacity className="flex-row justify-center py-5"
-            onPress={() => navigate.navigate('exercise')}>
+            onPress={() => navigate.navigate('exercise', {data:exercises})}>
             <Text className="text-lg">Review the lesson with </Text>
             <Text className="color-[#208BE8] font-bold underline text-lg">Exercises</Text>
           </TouchableOpacity> : ""}

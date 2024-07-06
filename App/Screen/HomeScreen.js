@@ -27,6 +27,7 @@ export default function HomeScreen() {
   const getCourses = () => {
     getAllCourseList().then(resp => {
       setCourseList(resp?.courses);
+      // console.log(resp)
     })
   }
 

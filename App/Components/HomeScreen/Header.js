@@ -8,30 +8,35 @@ import { Ionicons } from '@expo/vector-icons';
 import { UserPointsContext } from '../../Context/UserPointsContext'
 import { GetPoint } from '../../Services/getPoint';
 import { useIsFocused } from '@react-navigation/native';
-import { getUserDetail } from '../../Services';
+import { createNewUser, getUserDetail } from '../../Services';
 
 export default function Header({ input, point, setInput }) {
   const { isLoaded, isSignedIn, user } = useUser();
+  const [newFullName, setNewFullName] = useState(newFullName);
 
   const isFocused = useIsFocused();
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    if (isFocused || refreshing) {
-      GetUserDetails();
-    }
-  }, [isFocused, refreshing])
+    user && createUser();
+  }, [user])
 
-  const GetUserDetails = () => {
-    getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
-      if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
-        setNewFullName(resp.userDetail.userName);
-        // console.log(resp.userDetail.userName);
-      }
-    })
+  const createUser = () => {
+    if (user) {
+      createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
+        if (resp) {
+          getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
+            console.log(resp)
+            if (user.primaryEmailAddress.emailAddress == resp.userDetail.email) {
+              setNewFullName(resp.userDetail.userName);
+              console.log(resp.userDetail.userName);
+            }
+          })
+        }
+      })
+    }
   }
 
-  const [newFullName, setNewFullName] = useState(newFullName);
 
   return isLoaded && (
     <View>

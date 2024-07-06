@@ -8,7 +8,7 @@ import phpIcon from './../../assets/images/php-icon.png'
 import jsIcon from './../../assets/images/js-icon.png'
 import snowMan from './../../assets/images/snowman.png'
 import google from './../../assets/images/google.webp'
-import Snow from '../Components/Animated/Snow'
+// import Snow from '../Components/Animated/Snow'
 import { useWarmUpBrowser } from '../../hooks/useWarmUpBrowser'
 import { useOAuth } from "@clerk/clerk-expo";
 
@@ -36,7 +36,7 @@ export default function LoginScreen() {
   return (
     <View className="bg-LIGHT-PRIMARY w-full h-full relative">
       <View>
-        <Snow></Snow>
+        {/* <Snow></Snow> */}
         <View className="flex flex-row top-10 justify-center">
           <Text className="text-RED text-5xl">Snow</Text>
           <Text className="text-5xl">Code</Text>

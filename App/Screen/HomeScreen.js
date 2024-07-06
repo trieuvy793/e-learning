@@ -4,7 +4,6 @@ import Header from '../Components/HomeScreen/Header.js'
 import Colors from '../../assets/colors/Colors.js'
 import CourseList from '../Components/HomeScreen/CourseList.js'
 import { useAuth, useUser } from '@clerk/clerk-expo'
-import { createNewUser, getUserDetail } from '../Services/index.js'
 import { UserPointsContext } from '../Context/UserPointsContext.js'
 import { GetPoint } from '../Services/getPoint.js'
 import CourseProgress from '../Components/HomeScreen/CourseProgress.js'
@@ -23,23 +22,7 @@ export default function HomeScreen() {
   const coursesByLevel = {};
   const [refreshing, setRefreshing] = useState(false);
   const point = GetPoint();
-
-  useEffect(() => {
-    user && createUser();
-  }, [user])
-
-  const createUser = () => {
-    if (!user) {
-      console.log("hi0" + user.fullName);
-      createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
-        if (resp)
-          GetPoint();
-      })
-    }
-    // else {
-    //   getUserDetail(user.primaryEmailAddress.emailAddress);
-    // }
-  }
+  console.log(point)
 
   const getCourses = () => {
     getAllCourseList().then(resp => {

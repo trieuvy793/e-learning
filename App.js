@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { LogBox, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useFonts } from 'expo-font';
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import LoginScreen from './App/Screen/LoginScreen';
@@ -22,12 +22,12 @@ import SupportScreen from './App/Screen/SupportScreen';
 import ChangeInfo from './App/Components/Profile/ChangeInfo';
 import ExerciseScreen from './App/Screen/ExerciseScreen';
 import { Provider } from 'react-redux';
-import store from './App/Redux/store'
+import store from './App/Redux/store';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
-export default function App() {
 
+export default function App() {
   const [fontsLoaded, fontError] = useFonts({
     'lato': require('./assets/fonts/Lato-Regular.ttf'),
     'lato-light': require('./assets/fonts/Lato-Light.ttf'),
@@ -41,6 +41,7 @@ export default function App() {
 
   const [userPoints, setUserPoints] = useState();
   const [isChapterComplete, setIsChapterComplete] = useState(false);
+
   return (
     <ClerkProvider publishableKey={"pk_test_dG9waWNhbC1jYXRmaXNoLTM1LmNsZXJrLmFjY291bnRzLmRldiQ"}>
       <UserPointsContext.Provider value={{ userPoints, setUserPoints }}>
@@ -51,7 +52,7 @@ export default function App() {
                 <NavigationContainer>
                   <Stack.Navigator screenOptions={{ headerShown: false }}>
                     <Stack.Group>
-                      <Stack.Screen name='Home' component={TabNavigation} />
+                      <Stack.Screen name='Home Page' component={TabNavigation} />
                       <Stack.Screen name='course-detail' component={CourseDetailScreen} />
                       <Stack.Screen name='chapter-content' component={ChapterContentScreen} />
                       <Stack.Screen name='exercise' component={ExerciseScreen} />
@@ -80,7 +81,6 @@ export default function App() {
           </Provider>
         </CompleteChapterContext.Provider>
       </UserPointsContext.Provider>
-
     </ClerkProvider>
   );
 }

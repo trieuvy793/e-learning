@@ -8,30 +8,35 @@ import { Ionicons } from '@expo/vector-icons';
 import { UserPointsContext } from '../../Context/UserPointsContext'
 import { GetPoint } from '../../Services/getPoint';
 import { useIsFocused } from '@react-navigation/native';
-import { getUserDetail } from '../../Services';
+import { createNewUser, getUserDetail } from '../../Services';
 
 export default function Header({ input, point, setInput }) {
   const { isLoaded, isSignedIn, user } = useUser();
+  const [newFullName, setNewFullName] = useState(newFullName);
 
   const isFocused = useIsFocused();
   const [refreshing, setRefreshing] = useState(false);
+  const [userType, setUserType] = useState("Basic");
 
   useEffect(() => {
-    if (isFocused || refreshing) {
-      GetUserDetails();
-    }
-  }, [isFocused, refreshing])
+    user && createUser();
+  }, [user])
 
-  const GetUserDetails = () => {
-    getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
-      if (user.primaryEmailAddress.emailAddress === resp.userDetail.email) {
-        setNewFullName(resp.userDetail.userName);
-        // console.log(resp.userDetail.userName);
-      }
-    })
+  const createUser = () => {
+    if (user) {
+      createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
+        if (resp) {
+          getUserDetail(user.primaryEmailAddress.emailAddress).then(resp => {
+            if (user.primaryEmailAddress.emailAddress == resp.userDetail.email) {
+              setNewFullName(resp.userDetail.userName);
+              setUserType(resp.userDetail.userType)
+            }
+          })
+        }
+      })
+    }
   }
 
-  const [newFullName, setNewFullName] = useState(newFullName);
 
   return isLoaded && (
     <View>
@@ -41,7 +46,17 @@ export default function Header({ input, point, setInput }) {
             className="h-12 w-12 rounded-full" />
           <View>
             <Text className="text-xs">Welcome Back!</Text>
-            <Text className="text-xl" refreshing={refreshing}>{newFullName}</Text>
+            {/* <Text className="text-xl" refreshing={refreshing}>{newFullName}</Text> */}
+            <Text
+                className="text-xl"
+                style={[
+                  styles.text,
+                  userType !== 'Basic' && styles.highlightedText
+                ]}
+                refreshing={refreshing}
+              >
+                {newFullName}
+          </Text>
           </View>
         </View>
         <View className="flex flex-row items-center gap-3">
@@ -65,3 +80,12 @@ export default function Header({ input, point, setInput }) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24, // Equivalent to text-xl
+  },
+  highlightedText: {
+    color: '#FF5F54',
+  },
+});

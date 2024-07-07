@@ -6,7 +6,7 @@ import Colors from '../../../assets/colors/Colors';
 import CourseItem from './CourseItem';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
-export default function data({ level, data }) {
+export default function data({ userType, level, data }) {
 
   const navigation = useNavigation();
   
@@ -21,7 +21,7 @@ export default function data({ level, data }) {
         showsHorizontalScrollIndicator={false}
         scrollEnabled={true}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('course-detail', { course: item })}>
+          <TouchableOpacity onPress={() => navigation.navigate('course-detail', { userType: userType, course: item })}>
             <CourseItem item={item} />
           </TouchableOpacity>
         )}

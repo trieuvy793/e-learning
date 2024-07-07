@@ -28,6 +28,7 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "scheme": "elearning"
   }
 }

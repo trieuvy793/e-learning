@@ -42,7 +42,7 @@ export const getCourseList = async(level)=> {
   return result;
 }
 
-export const getAllCourseList = async()=> {
+export const getAllCourseList = async(email)=> {
   const query = gql`
   query AllCourseList {
     courses {
@@ -74,6 +74,9 @@ export const getAllCourseList = async()=> {
         title
         id
       }
+    }
+    userDetail(where: {email: "`+email+`"}) {
+      userType
     }
   }  
   `
@@ -172,8 +175,8 @@ export const createNewUser=async(userName,email,profileImageURL)=>{
   const mutationQuery=gql`
   mutation CreateNewUser {
     upsertUserDetail(
-      upsert: {create: 
-        {email: "`+email+`", point: 0, profileImage: "`+profileImageURL+`", userName: "`+userName+`"}, 
+      upsert: {
+        create: {email: "`+email+`", point: 0, profileImage: "`+profileImageURL+`", userName: "`+userName+`", userType: Basic}, 
         update: {email: "`+email+`", profileImage: "`+profileImageURL+`", userName: "`+userName+`"}}
       where: {email: "`+email+`"}
     ) {
@@ -197,6 +200,7 @@ export const getUserDetail=async(email)=>{
       profileImage
       userName
       email
+      userType
     }
   }
   `
@@ -407,3 +411,23 @@ export const updateProjectCode = async (description, projectSlug) => {
   const result = await request(MASTER_URL, mutationQuery);
   return result;
 }
+
+export const Payment = async (email, date, transactionCode, userType) => {
+  const mutationQuery = gql`
+    mutation Payment {
+      updateUserDetail(
+        where: {email: "`+email+`"}
+        data: {payment: {create: {data: {date: "`+date+`", transactionCode: "`+transactionCode+`"}}}, userType: `+userType+`}
+      ) {
+        id
+      }
+      publishUserDetail(where: {email: "`+email+`"}) {
+        id
+      }
+    }
+  `;
+
+    const result = await request(MASTER_URL, mutationQuery);
+    return result;
+};
+

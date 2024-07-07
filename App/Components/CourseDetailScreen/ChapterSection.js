@@ -7,7 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 import { CompleteChapterContext } from '../../Context/CompleteChapterContext';
 
 export default function ChapterSection({ chapterList, userEnrolledCourse, chapter }) {
-
   const { isChapterComplete, setIsChapterComplete } = useContext(CompleteChapterContext);
   const navigate = useNavigation();
   let completedChapter = userEnrolledCourse[0]?.completedChapter?.length;

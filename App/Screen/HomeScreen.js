@@ -4,7 +4,6 @@ import Header from '../Components/HomeScreen/Header.js'
 import Colors from '../../assets/colors/Colors.js'
 import CourseList from '../Components/HomeScreen/CourseList.js'
 import { useAuth, useUser } from '@clerk/clerk-expo'
-import { createNewUser, getUserDetail } from '../Services/index.js'
 import { UserPointsContext } from '../Context/UserPointsContext.js'
 import { GetPoint } from '../Services/getPoint.js'
 import CourseProgress from '../Components/HomeScreen/CourseProgress.js'
@@ -20,30 +19,15 @@ export default function HomeScreen() {
   const [input, setInput] = useState("");
   const isFocused = useIsFocused();
   const [courseList, setCourseList] = useState([]);
+  const [userType, setUserType] = useState([]);
   const coursesByLevel = {};
   const [refreshing, setRefreshing] = useState(false);
   const point = GetPoint();
 
-  useEffect(() => {
-    user && createUser();
-  }, [user])
-
-  const createUser = () => {
-    if (!user) {
-      console.log("hi0" + user.fullName);
-      createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl).then(resp => {
-        if (resp)
-          GetPoint();
-      })
-    }
-    // else {
-    //   getUserDetail(user.primaryEmailAddress.emailAddress);
-    // }
-  }
-
   const getCourses = () => {
-    getAllCourseList().then(resp => {
+    getAllCourseList(user.primaryEmailAddress.emailAddress).then(resp => {
       setCourseList(resp?.courses);
+      setUserType(resp.userDetail);
     })
   }
 
@@ -52,6 +36,7 @@ export default function HomeScreen() {
       getCourses();
     }
   }, [isFocused, refreshing])
+
 
   courseList.forEach(course => {
     if (!coursesByLevel[course.level]) {
@@ -66,7 +51,7 @@ export default function HomeScreen() {
       <View>
         {levels.map(level => (
           <View key={level}>
-            <CourseList level={level} data={coursesByLevel[level]} refreshing={refreshing} />
+            <CourseList userType={userType} level={level} data={coursesByLevel[level]} refreshing={refreshing} />
           </View>
         ))}
       </View>

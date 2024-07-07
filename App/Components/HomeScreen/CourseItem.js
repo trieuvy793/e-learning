@@ -22,7 +22,7 @@ export default function CourseItem({item,completedChapter}) {
           </View>
         </View>
         <Text style={{ color: item.price == 0 ? "#32C48D" : "#FF5F54"  }} className="mt-2">
-          {item.price == 0 ? 'Free' : '$'+item.price}
+          {item.price == 0 ? 'Free' : ''}
         </Text>
       </View>
       {completedChapter!=undefined

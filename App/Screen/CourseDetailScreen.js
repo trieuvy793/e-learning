@@ -19,7 +19,8 @@ export default function CourseDetailScreen() {
   const [userEnrolledCourse, setUserEnrolledCourse] = useState([]);
   const [showDescription, setShowDescription] = useState(true);
   const { user } = useUser();
-
+  console.log(params)
+  
   useEffect(() => {
     //console.log(params.course)
     if (user && params.course) {
@@ -62,7 +63,8 @@ export default function CourseDetailScreen() {
         <DetailSection userType={params.userType} course={params.course} description={{ showDescription, setShowDescription }} userEnrolledCourse={userEnrolledCourse}
           enrollCourse={() => UserEnrolledCourse()} />
         <ChapterSection chapterList={params.course.chapters}
-          userEnrolledCourse={userEnrolledCourse} />
+          userEnrolledCourse={userEnrolledCourse}
+          exercises={params.course.exercises} />
       </ScrollView>
     </View>
 

@@ -34,6 +34,16 @@ export const getCourseList = async(level)=> {
         title
         id
       }
+      exercises {
+          question
+          options {
+            answer1
+            answer2
+            answer3
+            answer4
+          }
+          answer
+        }
     }
   }
   `
@@ -74,6 +84,16 @@ export const getAllCourseList = async(email)=> {
         title
         id
       }
+      exercises {
+          question
+          options {
+            answer1
+            answer2
+            answer3
+            answer4
+          }
+          answer
+        }
     }
     userDetail(where: {email: "`+email+`"}) {
       userType
@@ -249,6 +269,16 @@ export const GetAllProgressCourse=async(userEmail)=>{
               html
             }
           }
+        }
+        exercises {
+          question
+          options {
+            answer1
+            answer2
+            answer3
+            answer4
+          }
+          answer
         }
         description {
           markdown

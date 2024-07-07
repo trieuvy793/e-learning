@@ -71,6 +71,7 @@ export default function App() {
                       <Stack.Screen name='payment-policy' component={PaymentPolicy} />
                       <Stack.Screen name='vnpay' component={vnpay} />
                       <Stack.Screen name='ide' component={IDEScreen} />
+                      <Stack.Screen name='login' component={LoginScreen} />
                     </Stack.Group>
                     <Stack.Group>
                       <Stack.Screen name='ChatbotScreen' component={SupportScreen} />

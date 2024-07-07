@@ -7,6 +7,7 @@ import CourseItem from './CourseItem';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 export default function data({ userType, level, data }) {
+  console.log(userType)
 
   const navigation = useNavigation();
   

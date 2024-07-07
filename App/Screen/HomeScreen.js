@@ -24,6 +24,8 @@ export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const point = GetPoint();
 
+  console.log(userType)
+
   const getCourses = () => {
     getAllCourseList(user.primaryEmailAddress.emailAddress).then(resp => {
       setCourseList(resp?.courses);
@@ -80,7 +82,7 @@ export default function HomeScreen() {
         <Header input={input} point={point} setInput={setInput} />
       </View>
       <ScrollView
-        style={{}}
+        style={{marginBottom: 200}}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -88,7 +90,7 @@ export default function HomeScreen() {
       >
         <View style={{ padding: 20 }}>
           {renderAllCourse()}
-          <CourseProgress refreshing={refreshing} />
+          <CourseProgress userType={userType} refreshing={refreshing} />
           {renderCourses()}
         </View>
       </ScrollView>

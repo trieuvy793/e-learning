@@ -6,7 +6,7 @@ import { useUser } from '@clerk/clerk-expo'
 import CourseItem from './CourseItem'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 
-export default function CourseProgress({refreshing}) {
+export default function CourseProgress({userType, refreshing}) {
 
   const { user } = useUser();
   const navigation = useNavigation();
@@ -36,7 +36,7 @@ export default function CourseProgress({refreshing}) {
         scrollEnabled={true}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('course-detail', { course: item.course })}
+            onPress={() => navigation.navigate('course-detail', {userType: userType, course: item.course })}
           >
             <CourseItem item={item.course}
               completedChapter={item?.completedChapter?.length} />

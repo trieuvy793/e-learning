@@ -121,7 +121,7 @@ const PaymentScreen = () => {
         console.error('Error updating payment details:', error);
       }
 
-      navigation.navigate('Home');
+      navigation.navigate('login');
     }
   };
 

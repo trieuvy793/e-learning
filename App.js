@@ -22,8 +22,14 @@ import SupportScreen from './App/Screen/SupportScreen';
 import ChangeInfo from './App/Components/Profile/ChangeInfo';
 import ExerciseScreen from './App/Screen/ExerciseScreen';
 import { Provider } from 'react-redux';
-import {Store, store} from './App/Redux/store'
+import { Store, store } from './App/Redux/store'
 import vnpay from './App/Screen/VNPAY';
+import SinginScreen from './App/Screen/SigninScreen';
+import CreateAccount from './App/Screen/CreateAccount';
+import SplashScreen from './App/Screen/SplashScreen';
+import ChatList from './App/Screen/ChatList';
+import AddToChatScreen from './App/Screen/AddToChatScreen';
+import ChatRoom from './App/Screen/ChatRoom';
 
 const Stack = createStackNavigator();
 LogBox.ignoreAllLogs();
@@ -72,12 +78,18 @@ export default function App() {
                       <Stack.Screen name='global-screen' component={ChatGlobalScreen} />
                       <Stack.Screen name='ide-screen' component={IDEScreen} />
                       <Stack.Screen name='change-info' component={ChangeInfo} />
+                      <Stack.Screen name='splash' component={SplashScreen} />
+                      <Stack.Screen name='sign-in' component={SinginScreen} />
+                      <Stack.Screen name='create-account' component={CreateAccount} />
+                      <Stack.Screen name='chat-list' component={ChatList} />
+                      <Stack.Screen name='add-chat' component={AddToChatScreen} />
+                      <Stack.Screen name='chat-room' component={ChatRoom} />
                     </Stack.Group>
                   </Stack.Navigator>
                 </NavigationContainer>
               </SignedIn>
               <SignedOut>
-                <LoginScreen/>
+                <LoginScreen />
               </SignedOut>
             </View>
           </Provider>
